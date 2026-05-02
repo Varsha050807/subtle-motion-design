@@ -77,41 +77,60 @@ const Blog = () => {
 
       <div className="hairline container" />
 
-      <section className="container py-20 md:py-28">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
-          {posts.map((p, i) => (
-            <Link
-              to={`/blog/${p.slug}`}
-              key={p.slug}
-              className="reveal group block lift"
-              style={{ transitionDelay: `${(i % 3) * 120}ms` }}
-            >
-              <div className="overflow-hidden bg-secondary">
-                <img
-                  src={p.image}
-                  alt={p.title}
-                  loading="lazy"
-                  width={1200}
-                  height={900}
-                  className="w-full aspect-[4/3] object-cover transition-transform duration-[1400ms] ease-rolex group-hover:scale-[1.03]"
-                />
-              </div>
-              <div className="mt-6 flex items-center gap-3 text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
-                <span className="text-brass">{p.category}</span>
-                <span>·</span>
-                <span>{p.date}</span>
-                <span>·</span>
-                <span>{p.read}</span>
-              </div>
-              <h2 className="mt-4 font-serif text-2xl md:text-[28px] leading-snug transition-opacity duration-500 group-hover:opacity-75 balance">
-                {p.title}
-              </h2>
-              <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{p.excerpt}</p>
-              <span className="mt-5 inline-block nav-link text-xs uppercase tracking-[0.2em]">
-                Read essay
-              </span>
-            </Link>
-          ))}
+      {/* SPLIT SCROLL LAYOUT */}
+      <section className="container py-12 md:py-20">
+        <div className="flex flex-col md:flex-row gap-10 md:gap-16 lg:gap-24 items-start relative">
+
+          {/* LEFT SIDE: STICKY VIDEO */}
+          <div className="w-full md:w-5/12 lg:w-[45%] md:sticky md:top-0 md:h-screen md:py-12 flex flex-col justify-center">
+            <div className="w-full h-[60vh] md:h-full relative overflow-hidden bg-secondary reveal">
+              <video
+                src="/videos/blog.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </div>
+          </div>
+
+          {/* RIGHT SIDE: SCROLLING POSTS */}
+          <div className="w-full md:w-7/12 lg:w-[55%] flex flex-col gap-20 md:gap-32 md:py-12">
+            {posts.map((p) => (
+              <Link
+                to={`/blog/${p.slug}`}
+                key={p.slug}
+                className="reveal group block lift"
+              >
+                <div className="overflow-hidden bg-secondary">
+                  <img
+                    src={p.image}
+                    alt={p.title}
+                    loading="lazy"
+                    width={1200}
+                    height={900}
+                    className="w-full aspect-[4/3] object-cover transition-transform duration-[1400ms] ease-rolex group-hover:scale-[1.03]"
+                  />
+                </div>
+                <div className="mt-8 flex items-center gap-3 text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+                  <span className="text-brass">{p.category}</span>
+                  <span>·</span>
+                  <span>{p.date}</span>
+                  <span>·</span>
+                  <span>{p.read}</span>
+                </div>
+                <h2 className="mt-5 font-serif text-3xl md:text-4xl leading-snug transition-opacity duration-500 group-hover:opacity-75 balance">
+                  {p.title}
+                </h2>
+                <p className="mt-4 text-base text-muted-foreground leading-relaxed">{p.excerpt}</p>
+                <span className="mt-8 inline-block nav-link text-xs uppercase tracking-[0.2em]">
+                  Read essay
+                </span>
+              </Link>
+            ))}
+          </div>
+
         </div>
       </section>
     </SiteLayout>

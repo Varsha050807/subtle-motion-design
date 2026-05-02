@@ -1,162 +1,520 @@
-import SiteLayout from "@/components/SiteLayout";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { motion, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import Lenis from "lenis";
 import { Link } from "react-router-dom";
-import hero from "@/assets/hero.jpg";
-import about from "@/assets/about.jpg";
 
-const Home = () => {
-  return (
-    <SiteLayout>
-      {/* HERO */}
-      <section className="relative h-[100svh] min-h-[640px] w-full overflow-hidden">
-        <img
-          src={hero}
-          alt="Marble pillar and brass scales of justice"
-          width={1920}
-          height={1080}
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink/40 to-ink/80" />
-        <div className="relative z-10 container h-full flex flex-col justify-end pb-24 md:pb-32 text-ivory">
-          <div className="max-w-3xl">
-            <p
-              className="text-[11px] uppercase tracking-[0.35em] text-ivory/70 animate-fade-in-slow"
-              style={{ animationDelay: "200ms" }}
-            >
-              Avimukta — Intellectual Property
-            </p>
-            <h1
-              className="mt-6 font-serif text-5xl md:text-7xl leading-[1.05] balance animate-fade-in-slow"
-              style={{ animationDelay: "600ms" }}
-            >
-              The quiet craft of protecting ideas.
-            </h1>
-            <p
-              className="mt-8 max-w-xl text-base md:text-lg text-ivory/75 leading-relaxed animate-fade-in-slow"
-              style={{ animationDelay: "1100ms" }}
-            >
-              For two decades, we have counselled inventors, founders and global houses on the
-              stewardship of their most valuable intangible assets.
-            </p>
-            <div
-              className="mt-12 flex items-center gap-8 animate-fade-in-slow"
-              style={{ animationDelay: "1700ms" }}
-            >
-              <Link
-                to="/services"
-                className="inline-flex items-center text-xs uppercase tracking-[0.25em] border-b border-ivory/60 pb-1 transition-opacity duration-700 hover:opacity-70"
-              >
-                Discover our practice
-              </Link>
-              <Link
-                to="/contact"
-                className="inline-flex items-center text-xs uppercase tracking-[0.25em] text-ivory/60 transition-opacity duration-700 hover:opacity-100"
-              >
-                Request a consultation
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-[0.4em] text-ivory/50 animate-fade-in-slow"
-          style={{ animationDelay: "2200ms" }}
-        >
-          Scroll
-        </div>
-      </section>
+gsap.registerPlugin(ScrollTrigger);
 
-      {/* INTRODUCTION */}
-      <section className="container py-32 md:py-40">
-        <div className="grid md:grid-cols-12 gap-10">
-          <p className="reveal md:col-span-4 text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
-            01 — A House of Counsel
-          </p>
-          <div className="md:col-span-8">
-            <h2 className="reveal font-serif text-3xl md:text-5xl leading-tight balance">
-              Few firms have the patience to listen. Fewer still, the discipline to translate that
-              listening into enduring protection.
-            </h2>
-            <p className="reveal mt-8 max-w-2xl text-muted-foreground leading-relaxed">
-              Avimukta is a boutique intellectual property practice. We work with a deliberately
-              limited roster of clients so that every matter receives the attention of a senior
-              partner from first conversation to final filing.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <div className="hairline container" />
-
-      {/* PRACTICE PILLARS */}
-      <section className="container py-32 md:py-40">
-        <div className="grid md:grid-cols-3 gap-px bg-border">
-          {[
-            { n: "I", t: "Patents", d: "Specifications, prosecution, freedom-to-operate, portfolio strategy." },
-            { n: "II", t: "Trademarks", d: "Brand clearance, registration, oppositions, global filing programs." },
-            { n: "III", t: "Disputes", d: "Pre-litigation strategy, infringement actions, mediation, appeals." },
-          ].map((p, i) => (
-            <div
-              key={p.t}
-              className="reveal bg-background p-10 md:p-12 transition-colors duration-700 hover:bg-secondary/50"
-              style={{ transitionDelay: `${i * 120}ms` }}
-            >
-              <div className="font-serif text-brass text-sm tracking-widest">{p.n}</div>
-              <h3 className="mt-6 font-serif text-3xl">{p.t}</h3>
-              <p className="mt-4 text-sm text-muted-foreground leading-relaxed">{p.d}</p>
-              <Link to="/services" className="mt-8 inline-block nav-link text-xs uppercase tracking-[0.2em]">
-                Read more
-              </Link>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* PHILOSOPHY */}
-      <section className="bg-gradient-ink text-ivory py-32 md:py-44">
-        <div className="container grid md:grid-cols-12 gap-12 items-center">
-          <div className="reveal reveal-left md:col-span-6">
-            <img
-              src={about}
-              alt="Leather-bound ledger, fountain pen and brass magnifier"
-              width={1600}
-              height={1100}
-              loading="lazy"
-              className="w-full aspect-[4/3] object-cover"
-            />
-          </div>
-          <div className="md:col-span-6">
-            <p className="reveal text-[11px] uppercase tracking-[0.3em] text-ivory/50">02 — Our Philosophy</p>
-            <h2 className="reveal mt-6 font-serif text-3xl md:text-5xl leading-tight balance">
-              Restraint is the rarest form of expertise.
-            </h2>
-            <p className="reveal mt-8 text-ivory/70 leading-relaxed max-w-xl">
-              We do not pursue volume. We pursue precision. Each filing is reviewed personally;
-              each strategy debated quietly among partners before it ever reaches a registry.
-            </p>
-            <Link
-              to="/about"
-              className="reveal mt-10 inline-flex items-center text-xs uppercase tracking-[0.25em] border-b border-ivory/40 pb-1 transition-opacity duration-700 hover:opacity-70"
-            >
-              The Avimukta Story
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="container py-32 md:py-44 text-center">
-        <p className="reveal text-[11px] uppercase tracking-[0.3em] text-muted-foreground">An invitation</p>
-        <h2 className="reveal mt-6 font-serif text-4xl md:text-6xl leading-tight balance max-w-3xl mx-auto">
-          Begin a conversation about what you have built.
-        </h2>
-        <Link
-          to="/contact"
-          className="reveal mt-12 inline-flex items-center text-xs uppercase tracking-[0.25em] border-b border-foreground/40 pb-1 transition-opacity duration-700 hover:opacity-70"
-        >
-          Request a private consultation
-        </Link>
-      </section>
-    </SiteLayout>
-  );
+// --- State & Events ---
+const hoverEvent = new EventTarget();
+const setHovered = (val: boolean) => hoverEvent.dispatchEvent(new CustomEvent('hover', { detail: val }));
+const useHovered = () => {
+  const [hovered, setH] = useState(false);
+  useEffect(() => {
+    const handler = (e: any) => setH(e.detail);
+    hoverEvent.addEventListener('hover', handler);
+    return () => hoverEvent.removeEventListener('hover', handler);
+  }, []);
+  return hovered;
 };
 
-export default Home;
+// --- Components ---
+function HoverHeading({ children, className = "" }: { children: React.ReactNode, className?: string }) {
+  return (
+    <motion.div
+      className={`relative inline-block cursor-pointer group ${className}`}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      whileHover="hover"
+      initial="rest"
+      animate="rest"
+    >
+      <motion.div
+        className="relative z-10"
+        variants={{
+          rest: { scale: 1, filter: "blur(0px)", y: 0 },
+          hover: { scale: 1.05, filter: "blur(0px)", y: -5, textShadow: "0px 10px 30px rgba(236, 232, 223, 0.3)" }
+        }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      >
+        {children}
+      </motion.div>
+      <motion.div
+        className="absolute -bottom-2 md:-bottom-4 left-0 w-full h-[2px] bg-current origin-left"
+        variants={{
+          rest: { scaleX: 0, opacity: 0 },
+          hover: { scaleX: 1, opacity: 1 }
+        }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      />
+    </motion.div>
+  );
+}
+
+
+// --- Hero Heading Component ---
+function AnimatedHeroHeading() {
+  const line1 = "Mastery in".split("");
+  const line2 = "Innovation.".split("");
+  const ease = [0.16, 1, 0.3, 1] as const;
+
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const mousePxX = useMotionValue(0);
+  const mousePxY = useMotionValue(0);
+
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    mouseX.set((x / rect.width) - 0.5);
+    mouseY.set((y / rect.height) - 0.5);
+    mousePxX.set(x);
+    mousePxY.set(y);
+  };
+
+  const handleMouseEnter = () => setIsHovered(true);
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
+  const springConfig = { damping: 40, stiffness: 100, mass: 1 };
+  const smoothX = useSpring(mouseX, springConfig);
+  const smoothY = useSpring(mouseY, springConfig);
+
+  const rotateX = useTransform(smoothY, [-0.5, 0.5], [12, -12]);
+  const rotateY = useTransform(smoothX, [-0.5, 0.5], [-12, 12]);
+
+  const bgX = useTransform(smoothX, [-0.5, 0.5], [80, -80]);
+  const bgY = useTransform(smoothY, [-0.5, 0.5], [80, -80]);
+
+  const orbSpringConfig = { damping: 30, stiffness: 150, mass: 0.5 };
+  const orbX = useSpring(mousePxX, orbSpringConfig);
+  const orbY = useSpring(mousePxY, orbSpringConfig);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] as const, delay: 0.4 }}
+      className="relative w-full py-12"
+      style={{ perspective: 1200 }}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      {/* Background Parallax Law Motifs */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center"
+        style={{ x: bgX, y: bgY }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isHovered ? 1 : 0 }}
+        transition={{ duration: 1.5, ease }}
+      >
+        <div className="absolute top-[-20%] left-[-10%] text-[10rem] md:text-[18rem] font-serif font-black italic text-[#0D2342]/12 opacity-20 blur-[1px] tracking-tight select-none whitespace-nowrap">
+          Justitia
+        </div>
+
+      </motion.div>
+
+      {/* Main Interactive Heading */}
+      <motion.h1
+        className="text-5xl md:text-[8rem] leading-[0.9] font-serif tracking-tight relative cursor-crosshair z-20"
+        initial="rest"
+        animate={isHovered ? "hover" : "rest"}
+        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+      >
+        {/* Base Text Layer */}
+        <div className="relative z-10" style={{ transform: "translateZ(40px)" }}>
+          <div className="block whitespace-nowrap">
+            {line1.map((char, i) => (
+              <motion.span
+                key={i}
+                className="inline-block text-[#0D2342]"
+                variants={{
+                  rest: { y: 0, x: 0, filter: "blur(0px)" },
+                  hover: {
+                    y: -10,
+                    x: i * 2,
+                    filter: ["blur(0px)", "blur(2px)", "blur(0px)"]
+                  }
+                }}
+                transition={{ duration: 1, ease, delay: i * 0.02 }}
+              >
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            ))}
+          </div>
+          <div className="block whitespace-nowrap">
+            {line2.map((char, i) => (
+              <motion.span
+                key={i}
+                className="inline-block text-[#5E748E] italic origin-center"
+                variants={{
+                  rest: {
+                    y: 0,
+                    x: 0,
+                    filter: "blur(0px)",
+                    scale: 1,
+                    textShadow: "0px 0px 0px rgba(212,175,55,0)"
+                  },
+                  hover: {
+                    y: -10,
+                    x: i * 2,
+                    filter: ["blur(0px)", "blur(2px)", "blur(0px)"],
+                    scale: 1.02,
+                    textShadow: "0px 15px 40px rgba(212,175,55,0.5)"
+                  }
+                }}
+                transition={{ duration: 1, ease, delay: (line1.length + i) * 0.02 }}
+              >
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            ))}
+          </div>
+        </div>
+
+        {/* Gold Shimmer Mask Overlay Layer */}
+        <motion.div
+          className="absolute inset-0 z-20 pointer-events-none"
+          style={{
+            backgroundImage: "linear-gradient(120deg, transparent 0%, transparent 40%, rgba(212, 175, 55, 0.9) 50%, transparent 60%, transparent 100%)",
+            backgroundSize: "200% 100%",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            color: "transparent",
+            transform: "translateZ(41px)"
+          }}
+          variants={{
+            rest: { backgroundPosition: "200% 0%", opacity: 0 },
+            hover: { backgroundPosition: "-100% 0%", opacity: 1 }
+          }}
+          transition={{ duration: 1.2, ease }}
+        >
+          <div className="block whitespace-nowrap">
+            {line1.map((char, i) => (
+              <motion.span
+                key={i}
+                className="inline-block"
+                variants={{
+                  rest: { y: 0, x: 0 },
+                  hover: { y: -10, x: i * 2 }
+                }}
+                transition={{ duration: 1, ease, delay: i * 0.02 }}
+              >
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            ))}
+          </div>
+          <div className="block whitespace-nowrap">
+            {line2.map((char, i) => (
+              <motion.span
+                key={i}
+                className="inline-block italic origin-center"
+                variants={{
+                  rest: { y: 0, x: 0, scale: 1 },
+                  hover: { y: -10, x: i * 2, scale: 1.02 }
+                }}
+                transition={{ duration: 1, ease, delay: (line1.length + i) * 0.02 }}
+              >
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            ))}
+          </div>
+        </motion.div>
+      </motion.h1>
+
+      {/* Glass Ripple & Ambient Particles */}
+      <motion.div
+        className="absolute top-0 left-0 pointer-events-none z-30 mix-blend-overlay"
+        style={{ x: orbX, y: orbY, translateX: "-50%", translateY: "-50%" }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isHovered ? 1 : 0 }}
+        transition={{ duration: 0.8, ease }}
+      >
+        {/* Main Glass Ripple Orb */}
+        <div className="w-72 h-72 rounded-full" style={{
+          backdropFilter: "blur(6px) brightness(1.05)",
+          background: "radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%)",
+          boxShadow: "inset 0 0 30px rgba(212,175,55,0.15)"
+        }} />
+
+        {/* Floating Gold Dust near cursor */}
+        {[...Array(6)].map((_, i) => {
+          const px = Math.sin(i * Math.PI / 3) * (50 + i * 15);
+          const py = Math.cos(i * Math.PI / 3) * (50 + i * 15);
+          return (
+            <motion.div
+              key={i}
+              className="absolute left-1/2 top-1/2 rounded-full bg-[#D4AF37]"
+              style={{
+                width: 2 + i,
+                height: 2 + i,
+                x: px,
+                y: py,
+                filter: `blur(${i * 0.5}px)`,
+              }}
+              animate={{
+                x: [px, px + (i % 2 === 0 ? 20 : -20), px],
+                y: [py, py + (i % 3 === 0 ? -20 : 20), py],
+                opacity: [0.1, 0.5, 0.1]
+              }}
+              transition={{
+                duration: 4 + i,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+          )
+        })}
+      </motion.div>
+    </motion.div>
+  );
+}
+
+// --- Main Page ---
+export default function Index() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Smooth Scroll & Infinite Loop Setup
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.5,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      infinite: true, // Enables seamless looping
+      touchMultiplier: 2,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      ScrollTrigger.update();
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
+  // Sticky Scroll Sequences
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Services panels pin and slide
+      const sections = gsap.utils.toArray('.service-panel');
+      gsap.to(sections, {
+        yPercent: -100 * (sections.length - 1),
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".services-container",
+          pin: true,
+          scrub: 1,
+          end: "+=4000",
+        }
+      });
+
+      // Background color morphs for services
+      gsap.to('.services-container', {
+        backgroundColor: "#071324",
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".services-container",
+          start: "top top",
+          end: "+=4000",
+          scrub: 1,
+        }
+      });
+    }, containerRef);
+    return () => ctx.revert();
+  }, []);
+
+  const { scrollYProgress } = useScroll({ target: containerRef });
+
+  // Immersive transition calculations mapped to total page scroll
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0]);
+  const heroY = useTransform(scrollYProgress, [0, 0.05], [0, 150]);
+
+
+  return (
+    <div
+      ref={containerRef}
+      className="bg-gradient-to-b from-[#F7F5EF] via-[#f2eee4] to-[#ECE8DF] text-[#0B1523] selection:bg-[#0D2342] selection:text-[#F7F5EF] font-sans overflow-hidden"
+    >
+
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 w-full p-8 z-50 flex justify-between items-center mix-blend-difference text-white pointer-events-none">
+        <div className="flex items-center gap-4 pointer-events-auto">
+          <img src="/images/logo.jpeg" alt="Logo" className="h-8 w-auto mix-blend-screen" />
+        </div>
+
+        {/* TOP HORIZONTAL ROUTING NAVIGATION */}
+        <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex gap-12 text-sm tracking-[0.2em] uppercase font-serif pointer-events-auto">
+          <Link to="/about" className="group relative opacity-70 hover:opacity-100 transition-all duration-500 hover:-translate-y-1">
+            <span>About</span>
+            <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+          </Link>
+          <Link to="/blog" className="group relative opacity-70 hover:opacity-100 transition-all duration-500 hover:-translate-y-1">
+            <span>Blog</span>
+            <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+          </Link>
+          <Link to="/services" className="group relative opacity-70 hover:opacity-100 transition-all duration-500 hover:-translate-y-1">
+            <span>Services</span>
+            <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+          </Link>
+        </div>
+
+        <div className="hidden md:flex gap-12 text-sm tracking-[0.2em] uppercase font-light pointer-events-auto">
+          <a href="#expertise" className="hover:text-[#ECE8DF] hover:opacity-100 opacity-70 transition-all duration-300">Expertise</a>
+          <a href="#philosophy" className="hover:text-[#ECE8DF] hover:opacity-100 opacity-70 transition-all duration-300">Philosophy</a>
+          <a href="#contact" className="hover:text-[#ECE8DF] hover:opacity-100 opacity-70 transition-all duration-300">Contact</a>
+        </div>
+      </nav>
+
+
+
+      <main className="relative z-10">
+
+        {/* HERO SECTION */}
+        <section className="h-screen flex flex-col justify-center px-8 md:px-24">
+          <motion.div style={{ opacity: heroOpacity, y: heroY }} className="max-w-6xl">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            >
+              <span className="text-[#5E748E] uppercase tracking-[0.4em] text-xs md:text-sm mb-8 block">
+                Intellectual Property Advisory
+              </span>
+            </motion.div>
+
+            <AnimatedHeroHeading />
+
+            <motion.p
+              className="mt-12 text-xl md:text-2xl max-w-2xl text-[#0B1523] font-light leading-relaxed"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1.5, delay: 0.8 }}
+            >
+              We protect the visionary architectures of tomorrow with uncompromising legal precision and strategic foresight.
+            </motion.p>
+          </motion.div>
+        </section>
+
+        {/* SERVICES SEQUENCE */}
+        <section className="services-container h-screen overflow-hidden bg-[#0D2342] text-[#F7F5EF] relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.3)]" id="expertise">
+          <div className="absolute top-12 left-8 md:top-1/2 md:-translate-y-1/2 md:left-24 z-30 pointer-events-none mix-blend-difference">
+            <h2 className="text-xs md:text-sm uppercase tracking-[0.4em] text-[#ECE8DF] opacity-50 mb-4">Our Practices</h2>
+          </div>
+
+          <div className="h-full flex flex-col w-full absolute top-0 left-0">
+            <div className="service-panel h-screen w-full flex items-center justify-center relative shrink-0">
+              <div className="max-w-5xl px-8 md:px-0 text-center relative z-10">
+                <HoverHeading>
+                  <h3 className="text-6xl md:text-[9rem] font-serif mb-8 text-[#ECE8DF]">Patents</h3>
+                </HoverHeading>
+                <p className="text-lg md:text-3xl font-light text-[#5E748E] max-w-3xl mx-auto leading-relaxed mt-12">
+                  Securing technical frontiers. Comprehensive drafting and prosecution for complex utility and design assets.
+                </p>
+              </div>
+            </div>
+
+            <div className="service-panel h-screen w-full flex items-center justify-center relative shrink-0">
+              <div className="max-w-5xl px-8 md:px-0 text-center relative z-10">
+                <HoverHeading>
+                  <h3 className="text-6xl md:text-[9rem] font-serif mb-8 text-[#ECE8DF]">Trademarks</h3>
+                </HoverHeading>
+                <p className="text-lg md:text-3xl font-light text-[#5E748E] max-w-3xl mx-auto leading-relaxed mt-12">
+                  Architecting brand dominance. Global portfolio management and aggressive enforcement strategies.
+                </p>
+              </div>
+            </div>
+
+            <div className="service-panel h-screen w-full flex items-center justify-center relative shrink-0">
+              <div className="max-w-5xl px-8 md:px-0 text-center relative z-10">
+                <HoverHeading>
+                  <h3 className="text-6xl md:text-[9rem] font-serif mb-8 text-[#ECE8DF]">Advisory</h3>
+                </HoverHeading>
+                <p className="text-lg md:text-3xl font-light text-[#5E748E] max-w-3xl mx-auto leading-relaxed mt-12">
+                  Strategic intelligence. Licensing, due diligence, and risk mitigation for high-stakes transactions.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* PHILOSOPHY */}
+        <section className="min-h-screen bg-[#F7F5EF] flex items-center justify-center py-40 px-8 md:px-24 relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.1)]" id="philosophy">
+          <div className="max-w-7xl mx-auto text-center">
+            <motion.p
+              initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, margin: "-20%" }}
+              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+              className="text-4xl md:text-6xl lg:text-[5.5rem] leading-[1.15] font-serif text-[#0D2342]"
+            >
+              We believe in <HoverHeading className="text-[#5E748E] italic px-2">restraint</HoverHeading> and <HoverHeading className="text-[#5E748E] italic px-2">precision.</HoverHeading> <br />A truly enduring legal framework is invisible, yet impenetrable.
+            </motion.p>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="relative h-screen bg-[#0D2342] text-[#F7F5EF] flex flex-col items-center justify-center z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.3)]" id="contact">
+          <div className="relative z-10 text-center px-8 w-full max-w-5xl">
+            <HoverHeading>
+              <h2 className="text-6xl md:text-[8rem] font-serif mb-16 text-[#ECE8DF] leading-none">Commence.</h2>
+            </HoverHeading>
+            <div className="mt-12 flex justify-center">
+              <button
+                onMouseEnter={() => setHovered(true)}
+                onMouseLeave={() => setHovered(false)}
+                className="group relative px-12 py-6 overflow-hidden rounded-full border border-[#ECE8DF]/30 bg-transparent transition-all duration-700 hover:bg-[#ECE8DF] hover:border-[#ECE8DF] hover:scale-105"
+              >
+                <span className="relative z-10 uppercase tracking-[0.3em] text-sm font-medium text-[#ECE8DF] group-hover:text-[#0D2342] transition-colors duration-700">
+                  Request Consultation
+                </span>
+                <div className="absolute inset-0 bg-[#ECE8DF] scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-700 ease-[0.16,1,0.3,1]" />
+              </button>
+            </div>
+            <div className="mt-32 text-xs md:text-sm text-[#5E748E] uppercase tracking-[0.3em] flex flex-col md:flex-row gap-6 md:gap-12 justify-center items-center opacity-70">
+              <span className="hover:text-[#ECE8DF] hover:opacity-100 transition-colors cursor-pointer">New York</span>
+              <span className="hidden md:inline">•</span>
+              <span className="hover:text-[#ECE8DF] hover:opacity-100 transition-colors cursor-pointer">London</span>
+              <span className="hidden md:inline">•</span>
+              <span className="hover:text-[#ECE8DF] hover:opacity-100 transition-colors cursor-pointer">Singapore</span>
+            </div>
+          </div>
+        </section>
+
+        {/* TRANSITION GRADIENT */}
+        <section className="h-[50vh] bg-gradient-to-b from-[#0D2342] to-[#F7F5EF] relative z-20 pointer-events-none" />
+
+        {/* DUPLICATE HERO FOR SEAMLESS INFINITE SCROLL */}
+        <section className="h-screen flex flex-col justify-center px-8 md:px-24 bg-[#F7F5EF] relative z-10 pointer-events-none">
+          <div className="max-w-6xl">
+            <span className="text-[#5E748E] uppercase tracking-[0.4em] text-xs md:text-sm mb-8 block">
+              Intellectual Property Advisory
+            </span>
+            <h1 className="text-5xl md:text-[8rem] leading-[0.9] font-serif tracking-tight text-[#0D2342]">
+              Mastery in<br />
+              <span className="text-[#5E748E] italic">Innovation.</span>
+            </h1>
+            <p className="mt-12 text-xl md:text-2xl max-w-2xl text-[#0B1523] font-light leading-relaxed">
+              We protect the visionary architectures of tomorrow with uncompromising legal precision and strategic foresight.
+            </p>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  );
+}

@@ -1,10 +1,8 @@
 import { useEffect } from "react";
 
-/**
- * Observes elements with the `.reveal` class and toggles `.in-view`
- * once they cross into the viewport. Cinematic, slow, one-shot.
- */
-export function useReveal(root: React.RefObject<HTMLElement> | null = null, deps: unknown[] = []) {
+export function useReveal(
+  root: React.RefObject<HTMLElement> | null = null
+) {
   useEffect(() => {
     const scope: ParentNode = root?.current ?? document;
     const els = scope.querySelectorAll<HTMLElement>(".reveal");
@@ -23,7 +21,7 @@ export function useReveal(root: React.RefObject<HTMLElement> | null = null, deps
     );
 
     els.forEach((el) => io.observe(el));
+
     return () => io.disconnect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, deps);
+  }, []);
 }
