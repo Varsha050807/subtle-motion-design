@@ -325,7 +325,7 @@ export default function Index() {
 
       // Background color morphs for services
       gsap.to('.services-container', {
-        backgroundColor: "#071324",
+        backgroundColor: "#355C7D",
         ease: "none",
         scrollTrigger: {
           trigger: ".services-container",
@@ -352,7 +352,7 @@ export default function Index() {
     >
 
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 w-full p-8 z-50 flex justify-between items-center mix-blend-difference text-white pointer-events-none">
+      <nav className="fixed top-0 left-0 w-full p-8 z-50 flex justify-between items-center pointer-events-none">
         <div className="flex items-center gap-4 pointer-events-auto">
           <img src="/images/logo.jpeg" alt="Logo" className="h-8 w-auto mix-blend-screen" />
         </div>
@@ -411,7 +411,7 @@ export default function Index() {
         </section>
 
         {/* SERVICES SEQUENCE */}
-        <section className="services-container h-screen overflow-hidden bg-[#0D2342] text-[#F7F5EF] relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.3)]" id="expertise">
+        <section className="services-container h-screen overflow-hidden bg-[#27445D] text-[#F7F5EF] relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.3)]" id="expertise">
           <div className="absolute top-12 left-8 md:top-1/2 md:-translate-y-1/2 md:left-24 z-30 pointer-events-none mix-blend-difference">
             <h2 className="text-xs md:text-sm uppercase tracking-[0.4em] text-[#ECE8DF] opacity-50 mb-4">Our Practices</h2>
           </div>
@@ -468,7 +468,7 @@ export default function Index() {
         </section>
 
         {/* CTA */}
-        <section className="relative h-screen bg-[#0D2342] text-[#F7F5EF] flex flex-col items-center justify-center z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.3)]" id="contact">
+        <section className="relative h-screen bg-[#27445D] text-[#F7F5EF] flex flex-col items-center justify-center z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.3)]" id="contact">
           <div className="relative z-10 text-center px-8 w-full max-w-5xl">
             <HoverHeading>
               <h2 className="text-6xl md:text-[8rem] font-serif mb-16 text-[#ECE8DF] leading-none">Commence.</h2>
@@ -496,7 +496,7 @@ export default function Index() {
         </section>
 
         {/* TRANSITION GRADIENT */}
-        <section className="h-[50vh] bg-gradient-to-b from-[#0D2342] to-[#F7F5EF] relative z-20 pointer-events-none" />
+        <section className="h-[50vh] bg-gradient-to-b from-[#27445D] to-[#F7F5EF] relative z-20 pointer-events-none" />
 
         {/* DUPLICATE HERO FOR SEAMLESS INFINITE SCROLL */}
         <section className="h-screen flex flex-col justify-center px-8 md:px-24 bg-[#F7F5EF] relative z-10 pointer-events-none">

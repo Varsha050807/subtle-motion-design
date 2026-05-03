@@ -66,7 +66,7 @@ function ServicesHero() {
 
   return (
     <section
-      className="relative h-[90vh] flex items-center justify-center overflow-hidden bg-[#0D2342] text-[#F7F5EF] cursor-crosshair pt-20"
+      className="relative h-[90vh] flex items-center justify-center overflow-hidden bg-[#27445D] text-[#F7F5EF] cursor-crosshair pt-20"
       onMouseMove={handleMouseMove}
     >
       {/* Reactive Spotlight Glow */}
@@ -146,13 +146,13 @@ function ServicesHero() {
 function ServiceCard({ service }: { service: any }) {
   return (
     <motion.div
-      className="group relative bg-white/40 backdrop-blur-xl border border-white/50 p-10 md:p-14 overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.03)] cursor-pointer"
+      id={`service-${service.n}`}
+      className="group relative bg-[#ffffff]/70 backdrop-blur-xl border border-white/50 p-10 md:p-14 overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.03)] cursor-pointer"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10%" }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       whileHover="hover"
-      initial="rest"
     >
       <motion.div
         variants={{ hover: { y: -5, scale: 1.01 } }}
@@ -278,7 +278,7 @@ function StickyShowcase() {
 
 function BentoGrid() {
   return (
-    <section className="py-32 bg-[#0D2342] text-[#F7F5EF] relative overflow-hidden px-4 md:px-8">
+    <section className="py-32 bg-[#27445D] text-[#F7F5EF] relative overflow-hidden px-4 md:px-8">
       <div className="max-w-[1400px] mx-auto relative z-10">
         <div className="mb-20 text-center">
           <p className="text-sm tracking-[0.3em] uppercase text-[#D4AF37] mb-4">Complete Lexicon</p>
@@ -305,7 +305,7 @@ function BentoGrid() {
                 viewport={{ once: true, margin: "-10%" }}
                 transition={{ duration: 0.8, delay: (i % 4) * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 whileHover="hover"
-                initial="rest"
+
               >
                 {/* Background Bloom on Hover */}
                 <motion.div
@@ -356,6 +356,58 @@ function BentoGrid() {
   )
 }
 
+function QuickNavigation() {
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      // 100px offset to prevent the sticky header or top margin from obscuring the title
+      const y = element.getBoundingClientRect().top + window.scrollY - 100;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <section className="bg-[#ECE8DF] text-[#0D2342] py-24 px-4 md:px-8 border-b border-[#0D2342]/5 relative z-20">
+      <div className="max-w-[1400px] mx-auto">
+        <div className="mb-16">
+          <p className="text-sm tracking-[0.3em] uppercase text-[#D4AF37] mb-4">Service Index</p>
+          <h2 className="text-4xl md:text-5xl font-serif text-[#0D2342]">Quick Navigation</h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+          {SERVICE_CATEGORIES.map((cat) => (
+            <div key={cat.id} className="flex flex-col">
+              <h3 className="text-lg tracking-[0.2em] uppercase text-[#5E748E] font-medium mb-8 pb-4 border-b border-[#0D2342]/10">
+                {cat.title}
+              </h3>
+              <ul className="flex flex-col gap-6">
+                {cat.services.map((srv) => (
+                  <li key={srv.n}>
+                    <a
+                      href={`#service-${srv.n}`}
+                      onClick={(e) => handleScroll(e, `service-${srv.n}`)}
+                      className="group flex items-start gap-4 cursor-pointer"
+                    >
+                      <span className="text-xs font-mono text-[#D4AF37] mt-1.5 transition-transform duration-300 group-hover:-translate-y-0.5">
+                        {srv.n}
+                      </span>
+                      <span className="text-[#0D2342]/80 group-hover:text-[#0D2342] font-serif text-lg md:text-xl transition-colors duration-300 relative inline-block">
+                        {srv.title}
+                        <span className="absolute left-0 right-0 -bottom-1 h-[1px] bg-[#D4AF37] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Services() {
   useEffect(() => {
     // Lenis Smooth Scroll Setup for this page
@@ -384,8 +436,9 @@ export default function Services() {
 
   return (
     <SiteLayout>
-      <div className="bg-[#0D2342] min-h-screen">
+      <div className="bg-[#F7F5EF] min-h-screen">
         <ServicesHero />
+        <QuickNavigation />
         <StickyShowcase />
         <BentoGrid />
       </div>
