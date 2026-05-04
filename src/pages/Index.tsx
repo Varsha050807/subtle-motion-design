@@ -282,6 +282,7 @@ function AnimatedHeroHeading() {
 // --- Main Page ---
 export default function Index() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [darkNav, setDarkNav] = useState(false);
 
   // Smooth Scroll & Infinite Loop Setup
   useEffect(() => {
@@ -334,6 +335,13 @@ export default function Index() {
           scrub: 1,
         }
       });
+      ScrollTrigger.create({
+        trigger: ".services-container",
+        start: "top top",
+        end: "bottom top",
+        onEnter: () => setDarkNav(true),
+        onLeaveBack: () => setDarkNav(false),
+      });
     }, containerRef);
     return () => ctx.revert();
   }, []);
@@ -352,24 +360,29 @@ export default function Index() {
     >
 
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 w-full p-8 z-50 flex justify-between items-center pointer-events-none">
+      <nav
+        className={`fixed top-0 left-0 w-full p-8 z-[100] flex justify-between items-center pointer-events-none transition-all duration-700 ${darkNav
+          ? "text-white bg-[#27445D]/20 backdrop-blur-md"
+          : "text-[#0D2342] bg-[#F7F5EF]/20 backdrop-blur-md"
+          }`}
+      >
         <div className="flex items-center gap-4 pointer-events-auto">
-          <img src="/images/logo.jpeg" alt="Logo" className="h-8 w-auto mix-blend-screen" />
+          <img src="/images/logo.jpeg" alt="Logo" className="h-8 w-auto object-contain" />
         </div>
 
         {/* TOP HORIZONTAL ROUTING NAVIGATION */}
         <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex gap-12 text-sm tracking-[0.2em] uppercase font-serif pointer-events-auto">
-          <Link to="/about" className="group relative opacity-70 hover:opacity-100 transition-all duration-500 hover:-translate-y-1">
+          <Link to="/about" className="group relative hover:opacity-100 transition-all duration-500 hover:-translate-y-1">
             <span>About</span>
-            <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+            <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-current scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
           </Link>
-          <Link to="/blog" className="group relative opacity-70 hover:opacity-100 transition-all duration-500 hover:-translate-y-1">
+          <Link to="/blog" className="group relative hover:opacity-100 transition-all duration-500 hover:-translate-y-1">
             <span>Blog</span>
-            <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+            <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-current scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
           </Link>
-          <Link to="/services" className="group relative opacity-70 hover:opacity-100 transition-all duration-500 hover:-translate-y-1">
+          <Link to="/services" className="group relative hover:opacity-100 transition-all duration-500 hover:-translate-y-1">
             <span>Services</span>
-            <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+            <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-current scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
           </Link>
         </div>
 

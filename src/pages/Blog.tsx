@@ -64,15 +64,30 @@ export const posts = [
 const Blog = () => {
   return (
     <SiteLayout>
-      <section className="container pt-40 pb-16">
-        <p className="reveal text-[11px] uppercase tracking-[0.3em] text-muted-foreground">The Journal</p>
-        <h1 className="reveal mt-6 font-serif text-5xl md:text-7xl leading-[1.05] balance max-w-4xl">
-          Considered writing on intellectual property.
-        </h1>
-        <p className="reveal mt-8 max-w-2xl text-muted-foreground leading-relaxed">
-          Quarterly essays from our partners on patents, brand stewardship, disputes, and the
-          long view of intangible assets.
-        </p>
+      <section className="relative h-[85vh] flex items-center justify-center overflow-hidden bg-[#27445D] text-[#F7F5EF] pt-20">
+        {/* ambient details */}
+        <div className="absolute inset-0 opacity-10 pointer-events-none overflow-hidden">
+          <div className="absolute top-[20%] left-[10%] w-[40vw] h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
+          <div className="absolute top-[70%] left-[30%] w-[60vw] h-[1px] bg-gradient-to-r from-transparent via-white to-transparent" />
+          <div className="absolute top-[10%] right-[5%] w-[40vw] h-[40vw] border border-white/5 rounded-full" />
+        </div>
+
+        <div className="container relative z-10 text-center">
+          <p className="text-xs md:text-sm tracking-[0.4em] uppercase text-[#D4AF37] mb-8">
+            The Journal
+          </p>
+
+          <h1 className="font-serif text-5xl md:text-[8rem] leading-[0.9] tracking-tight">
+            <span className="block">Considered writing.</span>
+            <span className="block italic text-[#5E748E] mt-4">
+              Enduring ideas.
+            </span>
+          </h1>
+
+          <p className="mt-12 text-lg md:text-2xl max-w-3xl mx-auto text-[#ECE8DF]/70 font-light leading-relaxed">
+            Quarterly essays on patents, trademarks, disputes, and the architecture of intellectual property.
+          </p>
+        </div>
       </section>
 
       <div className="hairline container" />
@@ -85,6 +100,7 @@ const Blog = () => {
           <div className="w-full md:w-5/12 lg:w-[45%] md:sticky md:top-0 md:h-screen md:py-12 flex flex-col justify-center">
             <div className="w-full h-[60vh] md:h-full relative overflow-hidden bg-secondary reveal">
               <video
+
                 src="/videos/blog.mp4"
                 autoPlay
                 muted

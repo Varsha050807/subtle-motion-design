@@ -142,6 +142,20 @@ function ServicesHero() {
     </section>
   );
 }
+function VideoBox() {
+  return (
+    <div className="relative bg-[#ffffff]/70 backdrop-blur-xl border border-white/50 p-10 md:p-14 overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.03)] flex items-center justify-center">
+
+      {/* Empty video container */}
+      <div className="w-full h-[300px] md:h-[400px] border-2 border-dashed border-[#D4AF37]/40 flex items-center justify-center">
+        <span className="text-[#5E748E] text-lg">
+          Video Placeholder
+        </span>
+      </div>
+
+    </div>
+  );
+}
 
 function ServiceCard({ service }: { service: any }) {
   return (
@@ -263,6 +277,7 @@ function StickyShowcase() {
               <h2 className="lg:hidden text-5xl font-serif text-[#0D2342] mb-4 border-b border-[#0D2342]/10 pb-4">
                 {cat.title}
               </h2>
+              <VideoBox />
 
               {cat.services.map((srv) => (
                 <ServiceCard key={srv.n} service={srv} />

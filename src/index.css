@@ -9,8 +9,10 @@
 
 @layer base {
   :root {
-    --background: 38 30% 96%;          /* warm ivory */
-    --foreground: 220 30% 10%;         /* deep ink */
+    --background: 38 30% 96%;
+    /* warm ivory */
+    --foreground: 220 30% 10%;
+    /* deep ink */
 
     --card: 38 30% 98%;
     --card-foreground: 220 30% 10%;
@@ -18,7 +20,8 @@
     --popover: 38 30% 98%;
     --popover-foreground: 220 30% 10%;
 
-    --primary: 220 35% 12%;            /* ink */
+    --primary: 220 35% 12%;
+    /* ink */
     --primary-foreground: 38 30% 96%;
 
     --secondary: 38 20% 92%;
@@ -27,7 +30,8 @@
     --muted: 38 18% 90%;
     --muted-foreground: 220 12% 38%;
 
-    --accent: 36 45% 48%;              /* brass */
+    --accent: 36 45% 48%;
+    /* brass */
     --accent-foreground: 38 30% 98%;
 
     --destructive: 0 60% 45%;
@@ -87,23 +91,40 @@
 }
 
 @layer base {
-  * { @apply border-border; }
-  html { scroll-behavior: smooth; }
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', system-ui, sans-serif;
     font-weight: 300;
     letter-spacing: 0.005em;
   }
-  h1, h2, h3, h4, h5, .serif {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  .serif {
     font-family: 'Cormorant Garamond', Georgia, serif;
     font-weight: 400;
     letter-spacing: -0.01em;
   }
-  ::selection { background: hsl(var(--accent) / 0.25); color: hsl(var(--foreground)); }
+
+  ::selection {
+    background: hsl(var(--accent) / 0.25);
+    color: hsl(var(--foreground));
+  }
 }
 
 @layer components {
+
   /* Reveal on scroll — Rolex-style cinematic fade */
   .reveal {
     opacity: 0;
@@ -113,52 +134,99 @@
       transform 1100ms var(--ease-rolex);
     will-change: opacity, transform;
   }
-  .reveal.in-view { opacity: 1; transform: translateY(0); }
 
-  .reveal-left { transform: translateX(-18px); }
-  .reveal-left.in-view { transform: translateX(0); }
-  .reveal-right { transform: translateX(18px); }
-  .reveal-right.in-view { transform: translateX(0); }
-  .reveal-fade { transform: none; }
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-left {
+    transform: translateX(-18px);
+  }
+
+  .reveal-left.in-view {
+    transform: translateX(0);
+  }
+
+  .reveal-right {
+    transform: translateX(18px);
+  }
+
+  .reveal-right.in-view {
+    transform: translateX(0);
+  }
+
+  .reveal-fade {
+    transform: none;
+  }
 
   /* Subtle hover underline (Rolex) */
   .nav-link {
     @apply relative inline-block text-sm tracking-wide transition-opacity duration-500;
     font-weight: 400;
   }
+
   .nav-link::after {
     content: '';
     position: absolute;
-    left: 0; right: 0; bottom: -4px;
+    left: 0;
+    right: 0;
+    bottom: -4px;
     height: 1px;
     background: currentColor;
     transform: scaleX(0);
     transform-origin: right center;
     transition: transform 600ms var(--ease-rolex);
   }
+
   .nav-link:hover::after,
   .nav-link[aria-current="page"]::after {
     transform: scaleX(1);
     transform-origin: left center;
   }
-  .nav-link:hover { opacity: 0.75; }
+
+  .nav-link:hover {
+    opacity: 0.75;
+  }
 
   /* Lift card */
   .lift {
     transition: transform 700ms var(--ease-rolex), box-shadow 700ms var(--ease-rolex);
   }
+
   .lift:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-lift);
   }
 
   /* Hairline divider */
-  .hairline { @apply h-px w-full bg-border; }
+  .hairline {
+    @apply h-px w-full bg-border;
+  }
 
   /* Text balance */
-  .balance { text-wrap: balance; }
+  .balance {
+    text-wrap: balance;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal, .reveal-left, .reveal-right { opacity: 1 !important; transform: none !important; transition: none !important; }
+
+  .reveal,
+  .reveal-left,
+  .reveal-right {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+@keyframes scrollLoop {
+  0% {
+    transform: translateY(0%);
+  }
+
+  100% {
+    transform: translateY(-50%);
+  }
 }

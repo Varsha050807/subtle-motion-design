@@ -45,3 +45,17 @@
   transform: translateY(0);
   filter: blur(0);
 }
+
+.animate-scroll {
+  animation: scrollLoop 3s linear infinite;
+}
+
+@keyframes scrollLoop {
+  0% {
+    transform: translateY(0%);
+  }
+
+  100% {
+    transform: translateY(-50%);
+  }
+}
