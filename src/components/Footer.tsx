@@ -77,18 +77,29 @@ const Footer = () => (
         </ul>
       </div>
 
-      {/* OFFICE */}
+      {/* SUPPORT */}
       <div>
         <div className="text-[10px] uppercase tracking-[0.25em] text-white/50 mb-4">
-          Office
+          Support
         </div>
-        <address className="not-italic text-sm text-white/70 leading-relaxed">
-          12 Court Chambers<br />
-          New Delhi, India 110001<br />
-          <a href="mailto:hello@avimukta.law" className="nav-link mt-2 inline-block">
-            hello@avimukta.law
-          </a>
-        </address>
+        <div className="text-sm text-white/70 leading-relaxed space-y-2">
+          <div>
+            Phone / WhatsApp: +91 70199 79704 <br />
+            Alternate: +91 7892 312058
+          </div>
+          <div>
+            Email: <br />
+            <a href="mailto:info@avimuktaip.com" className="nav-link">
+              info@avimuktaip.com
+            </a>
+          </div>
+          <div>
+            Hours: Monday - Saturday, 9 AM - 6 PM IST
+          </div>
+          <div>
+            Response Time: Within 24 hours
+          </div>
+        </div>
       </div>
 
     </div>
@@ -96,7 +107,9 @@ const Footer = () => (
     {/* BOTTOM STRIP */}
     <div className="border-t border-white/10 relative z-10">
       <div className="container py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/50">
-        <span>© {new Date().getFullYear()} Avimukta IP Services. All rights reserved.</span>
+        <span>
+          © 2026 Avimukta IP Services — A brand under Manur Research & Service LLP. All rights reserved.
+        </span>
         <span className="tracking-[0.2em] uppercase">Crafted with restraint</span>
       </div>
     </div>

@@ -10,39 +10,43 @@ const SERVICE_CATEGORIES = [
   {
     id: "protection",
     title: "PROTECTION",
+    video: "/videos/protection.mp4",
     services: [
-      { n: "01", title: "Patent Filing", body: "Drafting, filing, and prosecuting utility and design patents globally." },
-      { n: "02", title: "Trademark Services", body: "Brand clearance, registration, and portfolio management." },
-      { n: "03", title: "Copyright", body: "Securing creative expressions, software, and literary works." },
-      { n: "04", title: "Industrial Design", body: "Protecting aesthetic and ornamental configurations of products." },
+      { n: "01", title: "Patent Filing", body: "Drafting, filing, and prosecuting utility and design patents globally.", image: "http://www.luminouslegal.com/wp-content/uploads/2015/04/Patents-big.jpg" },
+      { n: "02", title: "Trademark Services", body: "Brand clearance, registration, and portfolio management.", image: "https://cms.ezylegal.in/wp-content/uploads/2022/12/IP-Trademark.jpeg" },
+      { n: "03", title: "Copyright", body: "Securing creative expressions, software, and literary works.", image: "https://astepabovelegalsolutions.com/wp-content/uploads/2022/09/DM_20220924113326_001.jpg" },
+      { n: "04", title: "Industrial Design", body: "Protecting aesthetic and ornamental configurations of products.", image: "https://www.studiored.com/wp-content/uploads/2021/07/industrial-design-companies-hero.webp?x83661" },
     ]
   },
   {
     id: "strategy",
     title: "STRATEGY",
+    video: "/videos/strategy.mp4",
     services: [
-      { n: "05", title: "Strategic IP Solution", body: "Aligning IP assets with long-term commercial goals." },
-      { n: "06", title: "Patent Search & Analytics", body: "FTO, invalidity, and landscape analysis." },
-      { n: "07", title: "IP Consultations", body: "Expert guidance for founders and corporate boards." },
-      { n: "08", title: "Portfolio Management", body: "Maximizing ROI on global intellectual property assets." },
+      { n: "05", title: "Strategic IP Solution", body: "Aligning IP assets with long-term commercial goals.", image: "https://ip.com/wp-content/uploads/2023/07/patent-landscape-services-patent-software-services.jpg" },
+      { n: "06", title: "Patent Search & Analytics", body: "FTO, invalidity, and landscape analysis.", image: "https://www.ipophil.gov.ph/wp-content/uploads/2020/10/IPOPHL-web-header-PatSearch.jpg" },
+      { n: "07", title: "IP Consultations", body: "Expert guidance for founders and corporate boards.", image: "https://www.ust.edu.ph/wp-content/uploads/2023/07/ITSO-IP-Consultation-1536x864.png" },
+      { n: "08", title: "Portfolio Management", body: "Maximizing ROI on global intellectual property assets.", image: "https://flourishfinancialservices.in/wp-content/uploads/2024/01/PMS-page-section-1-img.png" },
     ]
   },
   {
     id: "legal",
     title: "LEGAL",
+    video: "/videos/legal.mp4",
     services: [
-      { n: "09", title: "Patent Litigation Support", body: "Technical advocacy in infringement and validity disputes." },
-      { n: "10", title: "Merger & Acquisition", body: "IP due diligence for high-stakes corporate transactions." },
-      { n: "11", title: "Contract & Policies", body: "Drafting robust IP, NDA, and employment agreements." },
-      { n: "12", title: "Licensing", body: "Structuring technology transfer and commercialization deals." },
+      { n: "09", title: "Patent Litigation Support", body: "Technical advocacy in infringement and validity disputes.", image: "https://ipwatchdog.com/wp-content/uploads/2021/11/Depositphotos_461955494_XL-scaled.jpg" },
+      { n: "10", title: "Merger & Acquisition", body: "IP due diligence for high-stakes corporate transactions.", image: "https://5.imimg.com/data5/SELLER/Default/2025/8/537468067/CK/YK/VT/147344956/merger-acquisition-services-500x500.jpeg" },
+      { n: "11", title: "Contract & Policies", body: "Drafting robust IP, NDA, and employment agreements.", image: "https://golferhive.com/wp-content/uploads/2025/11/Top-down-flat-lay-of-venue-contract-with-highlighted-cancellation-policies-gold-pen-laptop-and-folders-on-rustic-wood.jpg" },
+      { n: "12", title: "Licensing", body: "Structuring technology transfer and commercialization deals.", image: "https://hsipservices.com/images/licensing.jpg" },
     ]
   },
   {
     id: "international",
     title: "INTERNATIONAL",
+    video: "/videos/international.mp4",
     services: [
-      { n: "13", title: "PCT National Phase", body: "Seamless entry into India for global PCT applications." },
-      { n: "14", title: "Paralegal Services", body: "Docketing, renewals, and administrative IP support." },
+      { n: "13", title: "PCT National Phase", body: "Seamless entry into India for global PCT applications.", image: "https://origiin.com/wp-content/uploads/international-business-meeting.jpg" },
+      { n: "14", title: "Paralegal Services", body: "Docketing, renewals, and administrative IP support.", image: "https://www.writinglaw.com/wp-content/uploads/2023/04/Paralegal-Services.png" },
     ]
   }
 ];
@@ -142,17 +146,19 @@ function ServicesHero() {
     </section>
   );
 }
-function VideoBox() {
+function VideoBox({ video }: { video: string }) {
   return (
-    <div className="relative bg-[#ffffff]/70 backdrop-blur-xl border border-white/50 p-10 md:p-14 overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.03)] flex items-center justify-center">
-
-      {/* Empty video container */}
-      <div className="w-full h-[300px] md:h-[400px] border-2 border-dashed border-[#D4AF37]/40 flex items-center justify-center">
-        <span className="text-[#5E748E] text-lg">
-          Video Placeholder
-        </span>
+    <div className="relative bg-[#ffffff]/70 backdrop-blur-xl border border-white/50 p-6 md:p-8 overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.03)] rounded-2xl">
+      <div className="w-full h-[300px] md:h-[400px] overflow-hidden rounded-xl">
+        <video
+          src={video}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover block"
+        />
       </div>
-
     </div>
   );
 }
@@ -277,7 +283,7 @@ function StickyShowcase() {
               <h2 className="lg:hidden text-5xl font-serif text-[#0D2342] mb-4 border-b border-[#0D2342]/10 pb-4">
                 {cat.title}
               </h2>
-              <VideoBox />
+              <VideoBox video={cat.video} />
 
               {cat.services.map((srv) => (
                 <ServiceCard key={srv.n} service={srv} />
@@ -310,7 +316,7 @@ function BentoGrid() {
             return (
               <motion.div
                 key={srv.n}
-                className={`group relative border border-white/10 bg-white/5 backdrop-blur-sm p-8 flex flex-col justify-end cursor-pointer overflow-hidden
+                className={`group relative border border-white/10  p-8 flex flex-col justify-end cursor-pointer overflow-hidden
                   ${isLarge ? "md:col-span-2 md:row-span-2" : ""}
                   ${isTall ? "md:row-span-2" : ""}
                   ${isWide ? "md:col-span-2" : ""}
@@ -322,6 +328,27 @@ function BentoGrid() {
                 whileHover="hover"
 
               >
+                {srv.image && (
+                  <>
+                    {/* Background Image */}
+                    <div
+                      className="absolute inset-0 z-0"
+                      style={{
+                        backgroundImage: `url(${srv.image})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center"
+                      }}
+                      variants={{
+                        rest: { scale: 1 },
+                        hover: { scale: 1.08 }
+                      }}
+                      transition={{ duration: 0.6 }}
+                    />
+
+                    {/* Dark Overlay (THIS FIXES EVERYTHING) */}
+                    <div className="absolute inset-0 bg-[#0D2342]/60 z-0" />
+                  </>
+                )}
                 {/* Background Bloom on Hover */}
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-tr from-[#D4AF37]/20 to-transparent pointer-events-none"
@@ -332,13 +359,17 @@ function BentoGrid() {
                   transition={{ duration: 0.5 }}
                 />
 
-                <div className="relative z-10">
-                  <span className="text-[#D4AF37] font-mono text-xs mb-4 block tracking-widest">{srv.n}</span>
-                  <h3 className={`font-serif text-white ${isLarge ? 'text-4xl' : 'text-2xl'} mb-2`}>
+                <div className="relative z-10 h-full flex flex-col">
+
+
+                  <span className="text-[#D4AF37] font-mono text-xs mb-3 block tracking-widest">
+                    {srv.n}
+                  </span>
+
+                  <h3 className={`font-serif text-white ${isLarge ? "text-4xl" : "text-2xl"} mb-2`}>
                     {srv.title}
                   </h3>
 
-                  {/* Body text expands out on hover */}
                   <motion.div
                     className="overflow-hidden"
                     variants={{

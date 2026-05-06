@@ -398,6 +398,7 @@ export default function Index() {
       <main className="relative z-10">
 
         {/* HERO SECTION */}
+
         <section className="h-screen flex flex-col justify-center px-8 md:px-24">
           <motion.div style={{ opacity: heroOpacity, y: heroY }} className="max-w-6xl">
             <motion.div
@@ -406,23 +407,39 @@ export default function Index() {
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
             >
               <span className="text-[#5E748E] uppercase tracking-[0.4em] text-xs md:text-sm mb-8 block">
-                Intellectual Property Advisory
+                Elite IP Strategists First
               </span>
             </motion.div>
 
             <AnimatedHeroHeading />
 
-            <motion.p
-              className="mt-12 text-xl md:text-2xl max-w-2xl text-[#0B1523] font-light leading-relaxed"
+            <motion.div
+              className="mt-12 max-w-4xl"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1.5, delay: 0.8 }}
             >
-              We protect the visionary architectures of tomorrow with uncompromising legal precision and strategic foresight.
-            </motion.p>
-          </motion.div>
-        </section>
+              <p className="text-xl md:text-2xl text-[#0B1523] font-light leading-relaxed mb-8">
+                Illuminating the Landscape of Innovation, Risk, and Value.
+              </p>
 
+              <p className="text-base md:text-lg text-[#5E748E] leading-relaxed max-w-3xl">
+                We do not merely advise. We illuminate, harvest, and build—engineering
+                intellectual property portfolios that endure, compete, and create lasting
+                wealth for the enterprises bold enough to lead.
+              </p>
+            </motion.div>
+
+          </motion.div> {/* THIS WAS MISSING */}
+
+        </section>
+        <section
+          className="h-[22vh] relative z-10 pointer-events-none -mb-[2px]"
+          style={{
+            background:
+              "linear-gradient(to bottom, #F7F5EF 0%, #eef0ed 18%, #ccd4d9 42%, #7890a5 70%, #27445D 100%)"
+          }}
+        />
         {/* SERVICES SEQUENCE */}
         <section className="services-container h-screen overflow-hidden bg-[#27445D] text-[#F7F5EF] relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.3)]" id="expertise">
           <div className="absolute top-12 left-8 md:top-1/2 md:-translate-y-1/2 md:left-24 z-30 pointer-events-none mix-blend-difference">
@@ -464,7 +481,8 @@ export default function Index() {
             </div>
           </div>
         </section>
-
+        {/* TRANSITION GRADIENT */}
+        <section className="h-[35vh] bg-gradient-to-b from-[#355C7D] to-[#F7F5EF] relative z-20 pointer-events-none" />
         {/* PHILOSOPHY */}
         <section className="min-h-screen bg-[#F7F5EF] flex items-center justify-center py-40 px-8 md:px-24 relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.1)]" id="philosophy">
           <div className="max-w-7xl mx-auto text-center">
@@ -479,7 +497,14 @@ export default function Index() {
             </motion.p>
           </div>
         </section>
-
+        {/* TRANSITION INTO CTA */}
+        <section
+          className="h-[28vh] relative z-20 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to bottom, #F7F5EF 0%, #e8e3d8 25%, #c9d1d8 55%, #5f7a95 78%, #27445D 100%)"
+          }}
+        />
         {/* CTA */}
         <section className="relative h-screen bg-[#27445D] text-[#F7F5EF] flex flex-col items-center justify-center z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.3)]" id="contact">
           <div className="relative z-10 text-center px-8 w-full max-w-5xl">
