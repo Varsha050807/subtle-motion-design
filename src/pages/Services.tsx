@@ -12,10 +12,22 @@ const SERVICE_CATEGORIES = [
     title: "PROTECTION",
     video: "/videos/protection.mp4",
     services: [
-      { n: "01", title: "Patent Filing", body: "Drafting, filing, and prosecuting utility and design patents globally.", image: "http://www.luminouslegal.com/wp-content/uploads/2015/04/Patents-big.jpg" },
-      { n: "02", title: "Trademark Services", body: "Brand clearance, registration, and portfolio management.", image: "https://cms.ezylegal.in/wp-content/uploads/2022/12/IP-Trademark.jpeg" },
-      { n: "03", title: "Copyright", body: "Securing creative expressions, software, and literary works.", image: "https://astepabovelegalsolutions.com/wp-content/uploads/2022/09/DM_20220924113326_001.jpg" },
-      { n: "04", title: "Industrial Design", body: "Protecting aesthetic and ornamental configurations of products.", image: "https://www.studiored.com/wp-content/uploads/2021/07/industrial-design-companies-hero.webp?x83661" },
+      {
+        n: "01", title: "Patent Drafting & Prosecution", body: "Drafting, filing, and prosecuting utility and design patents globally.", detailedBody:
+          "Your patent is defined by its claims. We craft complete and provisional specifications with technical precision, then prosecute them through examination to grant, handling FER responses, amendments, oppositions, and ensuring your invention is protected with strength, clarity, and enforceability", image: "http://www.luminouslegal.com/wp-content/uploads/2015/04/Patents-big.jpg"
+      },
+      {
+        n: "02", title: "Trademark Registration & Protection", body: "Brand clearance, registration, and portfolio management.", detailedBody:
+          "Brands are assets. We conduct searches, manage applications, registrations, renewals, oppositions, and enforcement in India and internationally, ensuring your name, logo, and identity are secured, protected, and positioned to support recognition, trust, and long-term commercial value.", image: "https://cms.ezylegal.in/wp-content/uploads/2022/12/IP-Trademark.jpeg"
+      },
+      {
+        n: "03", title: "Copyright Registration & Enforcement", body: "Securing creative expressions, software, and literary works.", detailedBody:
+          "Creative work deserves protection. We assist with copyright registration, licensing, assignments, and enforcement for software, research, content, and artistic works, ensuring your intellectual output is legally secured, commercially usable, and defended against infringement across all applicable domains. image: ", image: "https://astepabovelegalsolutions.com/wp-content/uploads/2022/09/DM_20220924113326_001.jpg"
+      },
+      {
+        n: "04", title: "Industrial Design Registration", body: "Protecting aesthetic and ornamental configurations of products.", detailedBody:
+          "Design defines perception. We secure protection for the visual aspects of products, including shape, configuration, and ornamentation, managing filings, examinations, oppositions, renewals, and enforcement, ensuring your designs remain exclusively yours across their full lifecycle of commercial use.", image: "https://www.studiored.com/wp-content/uploads/2021/07/industrial-design-companies-hero.webp?x83661"
+      },
     ]
   },
   {
@@ -23,10 +35,22 @@ const SERVICE_CATEGORIES = [
     title: "STRATEGY",
     video: "/videos/strategy.mp4",
     services: [
-      { n: "05", title: "Strategic IP Solution", body: "Aligning IP assets with long-term commercial goals.", image: "https://ip.com/wp-content/uploads/2023/07/patent-landscape-services-patent-software-services.jpg" },
-      { n: "06", title: "Patent Search & Analytics", body: "FTO, invalidity, and landscape analysis.", image: "https://www.ipophil.gov.ph/wp-content/uploads/2020/10/IPOPHL-web-header-PatSearch.jpg" },
-      { n: "07", title: "IP Consultations", body: "Expert guidance for founders and corporate boards.", image: "https://www.ust.edu.ph/wp-content/uploads/2023/07/ITSO-IP-Consultation-1536x864.png" },
-      { n: "08", title: "Portfolio Management", body: "Maximizing ROI on global intellectual property assets.", image: "https://flourishfinancialservices.in/wp-content/uploads/2024/01/PMS-page-section-1-img.png" },
+      {
+        n: "05", title: "IP Consultation & Strategy", body: "Aligning IP assets with long-term commercial goals.", detailedBody:
+          "IP strategy shapes outcomes. We advise on what to protect, when to act, how to structure ownership, and how to leverage assets, aligning intellectual property decisions with commercial goals, ensuring every step contributes to long-term value, scalability, and competitive positioning.", image: "https://ip.com/wp-content/uploads/2023/07/patent-landscape-services-patent-software-services.jpg"
+      },
+      {
+        n: "06", title: "Patent Search & Prior Art Analysis", body: "FTO, invalidity, and landscape analysis.", detailedBody:
+          "Before filing or building, clarity is critical. We conduct patentability searches, FTO analyses, landscape studies, and competitor mapping across jurisdictions, delivering structured insights, clear novelty positions, and strategic recommendations that guide confident innovation and informed IP decisions.", image: "https://www.ipophil.gov.ph/wp-content/uploads/2020/10/IPOPHL-web-header-PatSearch.jpg"
+      },
+      {
+        n: "07", title: "Invention Harvesting & IP Strategy", body: "Expert guidance for founders and corporate boards.", detailedBody:
+          "We uncover hidden innovation within your organisation. Through structured programs and focused workshops, we systematically capture, refine, and convert ideas into protectable assets, building high-value IP portfolios that align with business strategy and unlock long-term commercial potential.", image: "https://www.ust.edu.ph/wp-content/uploads/2023/07/ITSO-IP-Consultation-1536x864.png"
+      },
+      {
+        n: "08", title: "White Space Analysis & Competitive Density Analysis", body: "Maximizing ROI on global intellectual property assets.", detailedBody:
+          "Opportunity lies where others are not looking. We identify innovation gaps, assess technology density, and analyse competitive positioning, enabling you to target untapped areas, differentiate effectively, and invest in IP that delivers meaningful commercial advantage and strategic growth.", image: "https://flourishfinancialservices.in/wp-content/uploads/2024/01/PMS-page-section-1-img.png"
+      },
     ]
   },
   {
@@ -34,10 +58,22 @@ const SERVICE_CATEGORIES = [
     title: "LEGAL",
     video: "/videos/legal.mp4",
     services: [
-      { n: "09", title: "Patent Litigation Support", body: "Technical advocacy in infringement and validity disputes.", image: "https://ipwatchdog.com/wp-content/uploads/2021/11/Depositphotos_461955494_XL-scaled.jpg" },
-      { n: "10", title: "Merger & Acquisition", body: "IP due diligence for high-stakes corporate transactions.", image: "https://5.imimg.com/data5/SELLER/Default/2025/8/537468067/CK/YK/VT/147344956/merger-acquisition-services-500x500.jpeg" },
-      { n: "11", title: "Contract & Policies", body: "Drafting robust IP, NDA, and employment agreements.", image: "https://golferhive.com/wp-content/uploads/2025/11/Top-down-flat-lay-of-venue-contract-with-highlighted-cancellation-policies-gold-pen-laptop-and-folders-on-rustic-wood.jpg" },
-      { n: "12", title: "Licensing", body: "Structuring technology transfer and commercialization deals.", image: "https://hsipservices.com/images/licensing.jpg" },
+      {
+        n: "09", title: "Patent Litigation Support", body: "Technical advocacy in infringement and validity disputes.", detailedBody:
+          "Disputes demand precision. We provide pre-litigation analysis, claim charts, evidence preparation, and strategic support, helping you enforce your rights or defend against claims, ensuring your position is protected with clarity, strength, and informed legal direction throughout proceedings.", image: "https://ipwatchdog.com/wp-content/uploads/2021/11/Depositphotos_461955494_XL-scaled.jpg"
+      },
+      {
+        n: "10", title: "IP Due Diligence for M&A & Investments", body: "IP due diligence for high-stakes corporate transactions.", detailedBody:
+          "IP defines valuation. We conduct detailed due diligence, assessing ownership, validity, enforceability, encumbrances, and risks, delivering clear insights that enable investors and acquirers to understand exposure, validate assets, and make informed decisions in high-stakes transactions.", image: "https://5.imimg.com/data5/SELLER/Default/2025/8/537468067/CK/YK/VT/147344956/merger-acquisition-services-500x500.jpeg"
+      },
+      {
+        n: "11", title: "Contract Drafting & IP Agreements", body: "Drafting robust IP, NDA, and employment agreements.", detailedBody:
+          "IP strength depends on strong agreements. We draft, review, and advise on NDAs, licensing, assignments, technology transfers, and co-development contracts, ensuring clarity, enforceability, and alignment with your business objectives while managing compliance and long-term contractual risk.", image: "https://golferhive.com/wp-content/uploads/2025/11/Top-down-flat-lay-of-venue-contract-with-highlighted-cancellation-policies-gold-pen-laptop-and-folders-on-rustic-wood.jpg"
+      },
+      {
+        n: "12", title: "Licensing", body: "Structuring technology transfer and commercialization deals.", detailedBody:
+          "Innovation follows patterns. We analyse filing trends, citation networks, and claim evolution to map how technologies develop, revealing emerging opportunity zones, anticipating competitive shifts, and positioning your IP strategy ahead of where markets and technologies are moving next.", image: "https://hsipservices.com/images/licensing.jpg"
+      },
     ]
   },
   {
@@ -45,8 +81,14 @@ const SERVICE_CATEGORIES = [
     title: "INTERNATIONAL",
     video: "/videos/international.mp4",
     services: [
-      { n: "13", title: "PCT National Phase", body: "Seamless entry into India for global PCT applications.", image: "https://origiin.com/wp-content/uploads/international-business-meeting.jpg" },
-      { n: "14", title: "Paralegal Services", body: "Docketing, renewals, and administrative IP support.", image: "https://www.writinglaw.com/wp-content/uploads/2023/04/Paralegal-Services.png" },
+      {
+        n: "13", title: "PCT National Phase Entry — India", body: "Seamless entry into India for global PCT applications.", detailedBody:
+          "Global protection requires precision at entry. We manage complete PCT national phase filings in India, ensuring compliance with deadlines, documentation, and legal requirements, while supporting both foreign applicants entering India and Indian applicants expanding internationally through the PCT system.", image: "https://origiin.com/wp-content/uploads/international-business-meeting.jpg"
+      },
+      {
+        n: "14", title: "Paralegal Services", body: "Docketing, renewals, and administrative IP support.", detailedBody:
+          "Precision matters in every figure. We create technically accurate, jurisdiction-compliant patent drawings across mechanical, chemical, electrical, design, and software domains, delivering clear, examiner-ready visuals that strengthen specifications, support claims, and enhance the overall quality of your patent filings.", image: "https://www.writinglaw.com/wp-content/uploads/2023/04/Paralegal-Services.png"
+      },
     ]
   }
 ];
@@ -105,15 +147,14 @@ function ServicesHero() {
         />
       </div>
 
-      <div className="container relative z-10 text-center">
-        <motion.p
-          className="text-xs md:text-sm tracking-[0.4em] uppercase text-[#D4AF37] mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
-        >
-          Our Expertise
-        </motion.p>
+      <div className="relative z-10 flex flex-col items-center">        <motion.p
+        className="text-xs md:text-sm tracking-[0.4em] uppercase text-[#D4AF37] mb-8"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.2 }}
+      >
+        Our Expertise
+      </motion.p>
 
         <h1 className="text-5xl md:text-[8rem] leading-[0.9] font-serif tracking-tight flex flex-col items-center">
           <motion.span
@@ -203,8 +244,7 @@ function ServiceCard({ service }: { service: any }) {
           />
         </h3>
 
-        <p className="text-lg md:text-xl text-[#0B1523]/70 font-light max-w-lg leading-relaxed mt-4">
-          {service.body}
+        <p className="text-lg md:text-xl text-[#0B1523]/70 font-light max-w-2xl leading-relaxed mt-4 mx-auto text-justify">          {service.detailedBody || service.body}
         </p>
 
       </motion.div>
@@ -267,8 +307,7 @@ function StickyShowcase() {
                 <h2 className="text-6xl xl:text-[6rem] leading-[0.9] font-serif tracking-tight text-[#0D2342] uppercase">
                   {cat.title}
                 </h2>
-                <p className="mt-8 text-2xl text-[#5E748E] font-light max-w-md leading-relaxed">
-                  Precision strategies tailored for securing your assets in the {cat.title.toLowerCase()} domain.
+                <p className="mt-8 text-2xl text-[#5E748E] font-light max-w-md leading-relaxed text-justify">                  Precision strategies tailored for securing your assets in the {cat.title.toLowerCase()} domain.
                 </p>
               </motion.div>
             ))}
@@ -484,6 +523,20 @@ export default function Services() {
     <SiteLayout>
       <div className="bg-[#F7F5EF] min-h-screen">
         <ServicesHero />
+
+        <section className="bg-[#F7F5EF] text-[#0D2342] py-16 px-4 md:px-8 relative z-20">
+          <div className="max-w-[1400px] mx-auto">
+            <div className="max-w-3xl mx-auto bg-white border border-[#0D2342]/10 rounded-xl shadow-sm py-8 px-6 md:px-10 text-center">
+              <h3 className="text-sm tracking-[0.3em] uppercase text-[#D4AF37] mb-4 font-semibold">
+                Note for Global Audience
+              </h3>
+              <p className="text-lg md:text-xl font-serif leading-relaxed opacity-90">
+                All services are designed to comply with international IP laws, ensuring broad applicability across jurisdictions. To enhance accessibility for non-English-speaking audiences, we can provide key term glossaries or translations upon request.
+              </p>
+            </div>
+          </div>
+        </section>
+
         <QuickNavigation />
         <StickyShowcase />
         <BentoGrid />

@@ -360,9 +360,12 @@ export default function Index() {
         className="bg-gradient-to-b from-[#F7F5EF] via-[#f2eee4] to-[#ECE8DF] text-[#0B1523] selection:bg-[#0D2342] selection:text-[#F7F5EF] font-sans overflow-hidden"
       >
 
+
+
+
         {/* Navigation */}
         <nav
-          className={`fixed top-0 left-0 w-full p-8 z-[100] flex justify-between items-center pointer-events-none transition-all duration-700 ${darkNav
+          className={`fixed top-[40px] left-0 w-full p-8 z-[100] flex justify-between items-center pointer-events-none transition-all duration-700 ${darkNav
             ? "text-white bg-[#27445D]/20 backdrop-blur-md"
             : "text-[#0D2342] bg-[#F7F5EF]/20 backdrop-blur-md"
             }`}
@@ -385,14 +388,17 @@ export default function Index() {
               <span>Services</span>
               <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-current scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
             </Link>
+
+            <Link to="/ip-health" className="group relative hover:opacity-100 transition-all duration-500 hover:-translate-y-1">
+              <span>IP Health</span>
+              <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-current scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+            </Link>
           </div>
 
           <div className="hidden md:flex gap-12 text-sm tracking-[0.2em] uppercase font-light pointer-events-auto">
-            <a href="#expertise" className="hover:text-[#ECE8DF] hover:opacity-100 opacity-70 transition-all duration-300">Expertise</a>
-            <a href="#philosophy" className="hover:text-[#ECE8DF] hover:opacity-100 opacity-70 transition-all duration-300">Philosophy</a>
             <a href="#contact" className="hover:text-[#ECE8DF] hover:opacity-100 opacity-70 transition-all duration-300">Contact</a>
           </div>
-        </nav>
+        </nav >
 
 
 
@@ -443,19 +449,16 @@ export default function Index() {
           />
           {/* SERVICES SEQUENCE */}
           <section className="services-container h-screen overflow-hidden bg-[#27445D] text-[#F7F5EF] relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.3)]" id="expertise">
-            <div className="absolute top-12 left-8 md:top-1/2 md:-translate-y-1/2 md:left-24 z-30 pointer-events-none mix-blend-difference">
-              <h2 className="text-xs md:text-sm uppercase tracking-[0.4em] text-[#ECE8DF] opacity-50 mb-4">Our Practices</h2>
-            </div>
+
 
             <div className="h-full flex flex-col w-full absolute top-0 left-0">
               <div className="service-panel h-screen w-full flex items-center justify-center relative shrink-0">
                 <div className="max-w-5xl px-8 md:px-0 text-center relative z-10">
                   <HoverHeading>
-                    <h3 className="text-6xl md:text-[9rem] font-serif mb-8 text-[#ECE8DF]">Patents</h3>
+                    <h3 className="text-6xl md:text-[9rem] font-serif mb-8 text-[#ECE8DF]">Patent Analytics</h3>
                   </HoverHeading>
                   <p className="text-lg md:text-3xl font-light text-[#5E748E] max-w-3xl mx-auto leading-relaxed mt-12">
-                    Securing technical frontiers. Comprehensive drafting and prosecution for complex utility and design assets.
-                  </p>
+                    Securing technical frontiers. Comprehensive drafting, prosecution, and patent analytics for complex utility and design assets.                  </p>
                 </div>
               </div>
 
@@ -477,6 +480,20 @@ export default function Index() {
                   </HoverHeading>
                   <p className="text-lg md:text-3xl font-light text-[#5E748E] max-w-3xl mx-auto leading-relaxed mt-12">
                     Strategic intelligence. Licensing, due diligence, and risk mitigation for high-stakes transactions.
+                  </p>
+                </div>
+              </div>
+              <div className="service-panel h-screen w-full flex items-center justify-center relative shrink-0">
+                <div className="max-w-5xl px-8 md:px-0 text-center relative z-10">
+                  <HoverHeading>
+                    <h3 className="text-6xl md:text-[9rem] font-serif mb-8 text-[#ECE8DF]">
+                      Litigation
+                    </h3>
+                  </HoverHeading>
+
+                  <p className="text-lg md:text-3xl font-light text-[#5E748E] max-w-3xl mx-auto leading-relaxed mt-12">
+                    Enforcement with precision. Strategic representation, dispute resolution,
+                    infringement actions, and high-stakes intellectual property litigation.
                   </p>
                 </div>
               </div>
@@ -506,33 +523,6 @@ export default function Index() {
                 "linear-gradient(to bottom, #F7F5EF 0%, #e8e3d8 25%, #c9d1d8 55%, #5f7a95 78%, #27445D 100%)"
             }}
           />
-          {/* CTA */}
-          <section className="relative h-screen bg-[#27445D] text-[#F7F5EF] flex flex-col items-center justify-center z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.3)]" id="contact">
-            <div className="relative z-10 text-center px-8 w-full max-w-5xl">
-              <HoverHeading>
-                <h2 className="text-6xl md:text-[8rem] font-serif mb-16 text-[#ECE8DF] leading-none">Commence.</h2>
-              </HoverHeading>
-              <div className="mt-12 flex justify-center">
-                <button
-                  onMouseEnter={() => setHovered(true)}
-                  onMouseLeave={() => setHovered(false)}
-                  className="group relative px-12 py-6 overflow-hidden rounded-full border border-[#ECE8DF]/30 bg-transparent transition-all duration-700 hover:bg-[#ECE8DF] hover:border-[#ECE8DF] hover:scale-105"
-                >
-                  <span className="relative z-10 uppercase tracking-[0.3em] text-sm font-medium text-[#ECE8DF] group-hover:text-[#0D2342] transition-colors duration-700">
-                    Request Consultation
-                  </span>
-                  <div className="absolute inset-0 bg-[#ECE8DF] scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-700 ease-[0.16,1,0.3,1]" />
-                </button>
-              </div>
-              <div className="mt-32 text-xs md:text-sm text-[#5E748E] uppercase tracking-[0.3em] flex flex-col md:flex-row gap-6 md:gap-12 justify-center items-center opacity-70">
-                <span className="hover:text-[#ECE8DF] hover:opacity-100 transition-colors cursor-pointer">New York</span>
-                <span className="hidden md:inline">•</span>
-                <span className="hover:text-[#ECE8DF] hover:opacity-100 transition-colors cursor-pointer">London</span>
-                <span className="hidden md:inline">•</span>
-                <span className="hover:text-[#ECE8DF] hover:opacity-100 transition-colors cursor-pointer">Singapore</span>
-              </div>
-            </div>
-          </section>
 
           {/* TRANSITION GRADIENT */}
           <section className="h-[50vh] bg-gradient-to-b from-[#27445D] to-[#F7F5EF] relative z-20 pointer-events-none" />
@@ -548,8 +538,7 @@ export default function Index() {
                 <span className="text-[#5E748E] italic">Innovation.</span>
               </h1>
               <p className="mt-12 text-xl md:text-2xl max-w-2xl text-[#0B1523] font-light leading-relaxed">
-                We protect the visionary architectures of tomorrow with uncompromising legal precision and strategic foresight.
-              </p>
+                We do not merely advise. We illuminate, harvest, and build intellectual property portfolios that endure, compete, and create lasting wealth for the enterprises bold enough to lead.              </p>
             </div>
           </section>
 

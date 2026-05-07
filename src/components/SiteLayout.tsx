@@ -12,7 +12,7 @@ const SiteLayout = ({ children, hideFooter = false }: { children: ReactNode; hid
   return (
     <div ref={ref} className="min-h-screen flex flex-col bg-background">
       <Navbar />
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 pt-[100px]">{children}</main>
       {!hideFooter && <Footer />}
     </div>
   );
