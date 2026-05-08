@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Linkedin, Youtube, Twitter, HelpCircle } from "lucide-react";
 
 /* --- FLOATING LEGAL WORDS --- */
 const floatingWords = [
@@ -56,14 +57,55 @@ const Footer = () => (
     <div className="container py-20 grid gap-12 md:grid-cols-4 relative z-10">
 
       {/* BRAND */}
-      <div className="md:col-span-2">
+      <div className="md:col-span-2 flex flex-col justify-start items-start">
         <div className="font-serif text-2xl">Avimukta</div>
+
         <p className="mt-4 max-w-sm text-sm text-white/70 leading-relaxed">
           A boutique intellectual property practice — patents, trademarks, and strategic counsel
           for founders, scientists, and global brands.
         </p>
-      </div>
 
+        {/* 🔥 SOCIAL ICONS */}
+        <div className="flex items-center gap-5 mt-6">
+
+          <a
+            href="https://www.linkedin.com/company/104831424/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#D4AF37] transition-colors"
+          >
+            <Linkedin size={20} />
+          </a>
+
+          <a
+            href="https://www.youtube.com/@Avimukta_IP"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#D4AF37] transition-colors"
+          >
+            <Youtube size={20} />
+          </a>
+
+          <a
+            href="https://x.com/AvimuktaIP"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#D4AF37] transition-colors"
+          >
+            <Twitter size={20} />
+          </a>
+
+          <a
+            href="https://www.quora.com/profile/Avimukta-IP-Services"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#D4AF37] transition-colors"
+          >
+            <HelpCircle size={20} />
+          </a>
+
+        </div>
+      </div>
       {/* PRACTICE */}
       <div>
         <div className="text-[10px] uppercase tracking-[0.25em] text-white/50 mb-4">
@@ -82,22 +124,31 @@ const Footer = () => (
         <div className="text-[10px] uppercase tracking-[0.25em] text-white/50 mb-4">
           Support
         </div>
-        <div className="text-sm text-white/70 leading-relaxed space-y-2">
-          <div>
-            Phone / WhatsApp: +91 70199 79704 <br />
-            Alternate: +91 7892 312058
-          </div>
-          <div>
-            Email: <br />
-            <a href="mailto:info@avimuktaip.com" className="nav-link">
-              info@avimuktaip.com
-            </a>
-          </div>
-          <div>
-            Hours: Monday - Saturday, 9 AM - 6 PM IST
-          </div>
-          <div>
-            Response Time: Within 24 hours
+
+        <div className="text-sm text-white/70">
+          <div className="grid grid-cols-[140px_1fr] gap-y-2">
+
+            <span className="text-white/50">Phone / WhatsApp</span>
+            <span>+91 70199 79704</span>
+
+            <span className="text-white/50">Alternate</span>
+            <span>+91 7892 312058</span>
+
+            <span className="text-white/50">Email</span>
+            <span>
+              <a href="mailto:info@avimuktaip.com" className="nav-link">
+                info@avimuktaip.com
+              </a>
+            </span>
+
+            <span className="text-white/50">Hours</span>
+            <span className="whitespace-nowrap">
+              Monday – Saturday, 9 AM – 6 PM IST
+            </span>
+
+            <span className="text-white/50">Response Time</span>
+            <span>Within 24 hours</span>
+
           </div>
         </div>
       </div>
@@ -111,6 +162,16 @@ const Footer = () => (
           © 2026 Avimukta IP Services — A brand under Manur Research & Service LLP. All rights reserved.
         </span>
         <span className="tracking-[0.2em] uppercase">Crafted with restraint</span>
+        <div className="flex items-center gap-6 uppercase tracking-[0.2em]">
+          <Link
+            to="/privacy-policy"
+            className="hover:text-ivory transition-colors"
+          >
+            Privacy Policy
+          </Link>
+
+          <span>Crafted with restraint</span>
+        </div>
       </div>
     </div>
 

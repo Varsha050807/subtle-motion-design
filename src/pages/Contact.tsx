@@ -98,7 +98,7 @@ function ContactForm() {
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
     // Normalize values roughly
-    mouseX.set(x + 400); 
+    mouseX.set(x + 400);
     mouseY.set(y + 400);
   };
 
@@ -112,7 +112,7 @@ function ContactForm() {
 
   return (
     <section className="py-32 px-4 md:px-8 relative z-10 flex justify-center bg-[#F7F5EF] overflow-hidden">
-      
+
       {/* Ambient Moving Elements for Form Section */}
       <div className="absolute inset-0 pointer-events-none opacity-60">
         <motion.div
@@ -157,32 +157,32 @@ function ContactForm() {
           />
 
           <form onSubmit={onSubmit} className="relative z-10 space-y-12">
-            {["Name", "Email", "Subject"].map((f) => (
-              <div key={f} className="relative">
-                <input
-                  required
-                  id={f}
-                  placeholder=" "
-                  onFocus={() => setFocusedField(f)}
-                  onBlur={() => setFocusedField(null)}
-                  className="peer w-full border-b border-[#0D2342]/20 bg-transparent py-4 text-[#0D2342] text-lg outline-none focus:border-transparent transition-colors"
-                />
-                <label 
-                  htmlFor={f}
-                  className="absolute left-0 top-4 text-[#0D2342]/50 text-lg transition-all duration-300 pointer-events-none
+            {["Name", "Email", "Phone", "Subject"].map((f) => (<div key={f} className="relative">
+              <input
+                required
+                type={f === "Email" ? "email" : f === "Phone" ? "tel" : "text"}
+                id={f}
+                placeholder=" "
+                onFocus={() => setFocusedField(f)}
+                onBlur={() => setFocusedField(null)}
+                className="peer w-full border-b border-[#0D2342]/20 bg-transparent py-4 text-[#0D2342] text-lg outline-none focus:border-transparent transition-colors"
+              />
+              <label
+                htmlFor={f}
+                className="absolute left-0 top-4 text-[#0D2342]/50 text-lg transition-all duration-300 pointer-events-none
                   peer-focus:-top-4 peer-focus:text-xs peer-focus:text-[#D4AF37] peer-focus:tracking-[0.2em] peer-focus:uppercase
                   peer-not-placeholder-shown:-top-4 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-[#5E748E] peer-not-placeholder-shown:tracking-[0.2em] peer-not-placeholder-shown:uppercase"
-                >
-                  {f}
-                </label>
-                {/* Animated Underline */}
-                <motion.div 
-                  className="absolute bottom-0 left-0 h-[1px] bg-[#D4AF37]"
-                  initial={{ width: "0%" }}
-                  animate={{ width: focusedField === f ? "100%" : "0%" }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                />
-              </div>
+              >
+                {f} <span className="text-[#D4AF37]">*</span>
+              </label>
+              {/* Animated Underline */}
+              <motion.div
+                className="absolute bottom-0 left-0 h-[1px] bg-[#D4AF37]"
+                initial={{ width: "0%" }}
+                animate={{ width: focusedField === f ? "100%" : "0%" }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+              />
+            </div>
             ))}
 
             <div className="relative">
@@ -195,16 +195,16 @@ function ContactForm() {
                 onBlur={() => setFocusedField(null)}
                 className="peer w-full border-b border-[#0D2342]/20 bg-transparent py-4 text-[#0D2342] text-lg outline-none focus:border-transparent transition-colors resize-none"
               />
-              <label 
+              <label
                 htmlFor="Message"
                 className="absolute left-0 top-4 text-[#0D2342]/50 text-lg transition-all duration-300 pointer-events-none
                 peer-focus:-top-4 peer-focus:text-xs peer-focus:text-[#D4AF37] peer-focus:tracking-[0.2em] peer-focus:uppercase
                 peer-not-placeholder-shown:-top-4 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-[#5E748E] peer-not-placeholder-shown:tracking-[0.2em] peer-not-placeholder-shown:uppercase"
               >
-                Message
+                Message <span className="text-[#D4AF37]">*</span>
               </label>
               {/* Animated Underline */}
-              <motion.div 
+              <motion.div
                 className="absolute bottom-0 left-0 h-[1px] bg-[#D4AF37]"
                 initial={{ width: "0%" }}
                 animate={{ width: focusedField === "Message" ? "100%" : "0%" }}
@@ -220,7 +220,7 @@ function ContactForm() {
               <button type="submit" className="group flex items-center gap-4 text-sm uppercase tracking-[0.3em] text-[#0D2342] font-medium relative overflow-hidden">
                 <span className="relative z-10 flex items-center gap-2">
                   {sent ? "Message Sent" : "Send Message"}
-                  <motion.span 
+                  <motion.span
                     className="inline-block"
                     variants={{
                       rest: { x: 0 },
@@ -258,8 +258,7 @@ function ContactMap() {
     <section className="relative h-[60vh] overflow-hidden bg-[#27445D]">
       {/* Map iframe with scale animation */}
       <motion.iframe
-        src="https://maps.google.com/maps?q=New%20Delhi&t=&z=13&ie=UTF8&iwloc=&output=embed"
-        className="absolute inset-0 w-full h-full border-none grayscale contrast-125 brightness-90"
+        src="https://maps.google.com/maps?q=Bangalore&t=&z=13&ie=UTF8&iwloc=&output=embed" className="absolute inset-0 w-full h-full border-none grayscale contrast-125 brightness-90"
         initial={{ scale: 1.15 }}
         whileInView={{ scale: 1 }}
         viewport={{ once: true, margin: "0px 0px -10% 0px" }}
@@ -282,7 +281,7 @@ function ContactMap() {
           Office
         </p>
         <p className="font-serif text-2xl text-[#0D2342]">
-          New Delhi, India
+          Bengaluru, India
         </p>
       </motion.div>
     </section>

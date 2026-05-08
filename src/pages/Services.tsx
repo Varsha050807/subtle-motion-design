@@ -22,11 +22,15 @@ const SERVICE_CATEGORIES = [
       },
       {
         n: "03", title: "Copyright Registration & Enforcement", body: "Securing creative expressions, software, and literary works.", detailedBody:
-          "Creative work deserves protection. We assist with copyright registration, licensing, assignments, and enforcement for software, research, content, and artistic works, ensuring your intellectual output is legally secured, commercially usable, and defended against infringement across all applicable domains. image: ", image: "https://astepabovelegalsolutions.com/wp-content/uploads/2022/09/DM_20220924113326_001.jpg"
+          "Creative work deserves protection. We assist with copyright registration, licensing, assignments, and enforcement for software, research, content, and artistic works, ensuring your intellectual output is legally secured, commercially usable, and defended against infringement across all applicable domains.", image: "https://astepabovelegalsolutions.com/wp-content/uploads/2022/09/DM_20220924113326_001.jpg"
       },
       {
         n: "04", title: "Industrial Design Registration", body: "Protecting aesthetic and ornamental configurations of products.", detailedBody:
           "Design defines perception. We secure protection for the visual aspects of products, including shape, configuration, and ornamentation, managing filings, examinations, oppositions, renewals, and enforcement, ensuring your designs remain exclusively yours across their full lifecycle of commercial use.", image: "https://www.studiored.com/wp-content/uploads/2021/07/industrial-design-companies-hero.webp?x83661"
+      },
+      {
+        n: "05", title: "Paralegal Services", body: "Docketing, renewals, and administrative IP support.", detailedBody:
+          "Precision matters in every figure. We create technically accurate, jurisdiction-compliant patent drawings across mechanical, chemical, electrical, design, and software domains, delivering clear, examiner-ready visuals that strengthen specifications, support claims, and enhance the overall quality of your patent filings.", image: "https://www.writinglaw.com/wp-content/uploads/2023/04/Paralegal-Services.png"
       },
     ]
   },
@@ -36,19 +40,19 @@ const SERVICE_CATEGORIES = [
     video: "/videos/strategy.mp4",
     services: [
       {
-        n: "05", title: "IP Consultation & Strategy", body: "Aligning IP assets with long-term commercial goals.", detailedBody:
+        n: "06", title: "IP Consultation & Strategy", body: "Aligning IP assets with long-term commercial goals.", detailedBody:
           "IP strategy shapes outcomes. We advise on what to protect, when to act, how to structure ownership, and how to leverage assets, aligning intellectual property decisions with commercial goals, ensuring every step contributes to long-term value, scalability, and competitive positioning.", image: "https://ip.com/wp-content/uploads/2023/07/patent-landscape-services-patent-software-services.jpg"
       },
       {
-        n: "06", title: "Patent Search & Prior Art Analysis", body: "FTO, invalidity, and landscape analysis.", detailedBody:
+        n: "07", title: "Patent Search & Prior Art Analysis", body: "FTO, invalidity, and landscape analysis.", detailedBody:
           "Before filing or building, clarity is critical. We conduct patentability searches, FTO analyses, landscape studies, and competitor mapping across jurisdictions, delivering structured insights, clear novelty positions, and strategic recommendations that guide confident innovation and informed IP decisions.", image: "https://www.ipophil.gov.ph/wp-content/uploads/2020/10/IPOPHL-web-header-PatSearch.jpg"
       },
       {
-        n: "07", title: "Invention Harvesting & IP Strategy", body: "Expert guidance for founders and corporate boards.", detailedBody:
+        n: "08", title: "Invention Harvesting & IP Strategy", body: "Expert guidance for founders and corporate boards.", detailedBody:
           "We uncover hidden innovation within your organisation. Through structured programs and focused workshops, we systematically capture, refine, and convert ideas into protectable assets, building high-value IP portfolios that align with business strategy and unlock long-term commercial potential.", image: "https://www.ust.edu.ph/wp-content/uploads/2023/07/ITSO-IP-Consultation-1536x864.png"
       },
       {
-        n: "08", title: "White Space Analysis & Competitive Density Analysis", body: "Maximizing ROI on global intellectual property assets.", detailedBody:
+        n: "09", title: "White Space Analysis & Competitive Density Analysis", body: "Maximizing ROI on global intellectual property assets.", detailedBody:
           "Opportunity lies where others are not looking. We identify innovation gaps, assess technology density, and analyse competitive positioning, enabling you to target untapped areas, differentiate effectively, and invest in IP that delivers meaningful commercial advantage and strategic growth.", image: "https://flourishfinancialservices.in/wp-content/uploads/2024/01/PMS-page-section-1-img.png"
       },
     ]
@@ -59,19 +63,19 @@ const SERVICE_CATEGORIES = [
     video: "/videos/legal.mp4",
     services: [
       {
-        n: "09", title: "Patent Litigation Support", body: "Technical advocacy in infringement and validity disputes.", detailedBody:
+        n: "10", title: "Patent Litigation Support", body: "Technical advocacy in infringement and validity disputes.", detailedBody:
           "Disputes demand precision. We provide pre-litigation analysis, claim charts, evidence preparation, and strategic support, helping you enforce your rights or defend against claims, ensuring your position is protected with clarity, strength, and informed legal direction throughout proceedings.", image: "https://ipwatchdog.com/wp-content/uploads/2021/11/Depositphotos_461955494_XL-scaled.jpg"
       },
       {
-        n: "10", title: "IP Due Diligence for M&A & Investments", body: "IP due diligence for high-stakes corporate transactions.", detailedBody:
+        n: "11", title: "IP Due Diligence for M&A & Investments", body: "IP due diligence for high-stakes corporate transactions.", detailedBody:
           "IP defines valuation. We conduct detailed due diligence, assessing ownership, validity, enforceability, encumbrances, and risks, delivering clear insights that enable investors and acquirers to understand exposure, validate assets, and make informed decisions in high-stakes transactions.", image: "https://5.imimg.com/data5/SELLER/Default/2025/8/537468067/CK/YK/VT/147344956/merger-acquisition-services-500x500.jpeg"
       },
       {
-        n: "11", title: "Contract Drafting & IP Agreements", body: "Drafting robust IP, NDA, and employment agreements.", detailedBody:
+        n: "12", title: "Contract Drafting & IP Agreements", body: "Drafting robust IP, NDA, and employment agreements.", detailedBody:
           "IP strength depends on strong agreements. We draft, review, and advise on NDAs, licensing, assignments, technology transfers, and co-development contracts, ensuring clarity, enforceability, and alignment with your business objectives while managing compliance and long-term contractual risk.", image: "https://golferhive.com/wp-content/uploads/2025/11/Top-down-flat-lay-of-venue-contract-with-highlighted-cancellation-policies-gold-pen-laptop-and-folders-on-rustic-wood.jpg"
       },
       {
-        n: "12", title: "Licensing", body: "Structuring technology transfer and commercialization deals.", detailedBody:
+        n: "13", title: "Technology Evolution Mapping", body: "Structuring technology transfer and commercialization deals.", detailedBody:
           "Innovation follows patterns. We analyse filing trends, citation networks, and claim evolution to map how technologies develop, revealing emerging opportunity zones, anticipating competitive shifts, and positioning your IP strategy ahead of where markets and technologies are moving next.", image: "https://hsipservices.com/images/licensing.jpg"
       },
     ]
@@ -82,13 +86,10 @@ const SERVICE_CATEGORIES = [
     video: "/videos/international.mp4",
     services: [
       {
-        n: "13", title: "PCT National Phase Entry — India", body: "Seamless entry into India for global PCT applications.", detailedBody:
+        n: "14", title: "PCT National Phase Entry — India", body: "Seamless entry into India for global PCT applications.", detailedBody:
           "Global protection requires precision at entry. We manage complete PCT national phase filings in India, ensuring compliance with deadlines, documentation, and legal requirements, while supporting both foreign applicants entering India and Indian applicants expanding internationally through the PCT system.", image: "https://origiin.com/wp-content/uploads/international-business-meeting.jpg"
       },
-      {
-        n: "14", title: "Paralegal Services", body: "Docketing, renewals, and administrative IP support.", detailedBody:
-          "Precision matters in every figure. We create technically accurate, jurisdiction-compliant patent drawings across mechanical, chemical, electrical, design, and software domains, delivering clear, examiner-ready visuals that strengthen specifications, support claims, and enhance the overall quality of your patent filings.", image: "https://www.writinglaw.com/wp-content/uploads/2023/04/Paralegal-Services.png"
-      },
+
     ]
   }
 ];
@@ -224,11 +225,7 @@ function ServiceCard({ service }: { service: any }) {
           <span className="text-sm tracking-[0.2em] text-[#5E748E] font-medium">
             {service.n}
           </span>
-          <div className="w-12 h-12 rounded-full border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-white transition-colors duration-500">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
+
         </div>
 
         <h3 className="text-4xl md:text-5xl font-serif text-[#0D2342] mb-6 relative inline-block">

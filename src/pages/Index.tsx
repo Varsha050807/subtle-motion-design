@@ -371,8 +371,7 @@ export default function Index() {
             }`}
         >
           <div className="flex items-center gap-4 pointer-events-auto">
-            <img src="/images/logo.jpeg" alt="Logo" className="h-8 w-auto object-contain" />
-          </div>
+            <img src="/images/logo.jpeg" alt="Logo" className="h-16 w-auto object-contain" />          </div>
 
           {/* TOP HORIZONTAL ROUTING NAVIGATION */}
           <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex gap-12 text-sm tracking-[0.2em] uppercase font-serif pointer-events-auto">
@@ -391,6 +390,10 @@ export default function Index() {
 
             <Link to="/ip-health" className="group relative hover:opacity-100 transition-all duration-500 hover:-translate-y-1">
               <span>IP Health</span>
+              <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-current scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+            </Link>
+            <Link to="/subscription-model" className="group relative hover:opacity-100 transition-all duration-500 hover:-translate-y-1">
+              <span>Subscription</span>
               <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-current scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
             </Link>
           </div>
