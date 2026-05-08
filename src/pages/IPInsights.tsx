@@ -5,6 +5,7 @@ import blog1 from "@/assets/blog1.jpg";
 import blog2 from "@/assets/blog2.jpg";
 import blog3 from "@/assets/blog3.jpg";
 
+
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 export const posts = [
@@ -52,7 +53,7 @@ export const posts = [
             "You are about to lose your patent rights because your developer owns your invention",
         excerpt:
             "Many founders assume payment equals ownership. In IP law, without assignment agreements, the creator may legally own what your company built.",
-        image: blog2,
+        image: "/images/image4.png",
         date: "March 2026",
         read: "4 min",
         category: "IP Ownership",
@@ -64,7 +65,7 @@ export const posts = [
         title: `"If you have invented something and are asking 'Should I file a patent?'"`,
         excerpt:
             "The better question is not whether to file, but what exactly is protectable, when to file, and how to structure protection strategically.",
-        image: blog2,
+        image: "/images/image5.png",
         date: "March 2026",
         read: "4 min",
         category: "Patent Filing",
@@ -77,7 +78,7 @@ export const posts = [
             "Drafting as a discipline: why the patent specification is a literary form",
         excerpt:
             "A claim is read more often by adversaries than by examiners. Compose accordingly.",
-        image: blog1,
+        image: "/images/image6.png",
         date: "April 2026",
         read: "8 min",
         category: "Patents",
@@ -88,7 +89,7 @@ export const posts = [
             "The quiet trademark: brand protection that begins before the launch",
         excerpt:
             "Clearance done early is clearance done once. A short guide for founders.",
-        image: blog2,
+        image: "/images/image7.png",
         date: "March 2026",
         read: "6 min",
         category: "Trademarks",
@@ -98,7 +99,7 @@ export const posts = [
         title: "Litigation as last recourse: the case for considered restraint",
         excerpt:
             "The most successful enforcement strategies rarely see a courtroom. Here is why.",
-        image: blog3,
+        image: "/images/image8.png",
         date: "February 2026",
         read: "10 min",
         category: "Disputes",
@@ -109,7 +110,7 @@ export const posts = [
             "Portfolios as inheritance: building IP that outlives the team that built it",
         excerpt:
             "Documentation is the rarest virtue in IP management — and the most valuable.",
-        image: blog1,
+        image: "/images/image9.png",
         date: "January 2026",
         read: "7 min",
         category: "Strategy",
