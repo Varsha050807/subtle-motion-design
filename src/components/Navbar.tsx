@@ -8,6 +8,7 @@ const links = [
   { to: "/ip-insights", label: "IP Insights" },
   { to: "/ip-health", label: "IP Health" },
   { to: "/contact", label: "Contact" },
+  { to: "/subscription-model", label: "Subscription" },
 ];
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -48,19 +49,27 @@ const Navbar = () => {
         {/* LOGO */}
         <Link
           to="/"
-          className="flex items-baseline gap-2 hover:opacity-80 transition"
+          className="flex items-center gap-3 hover:opacity-80 transition"
         >
-          <span className="font-serif text-xl font-semibold">
-            Avimukta
-          </span>
+          <img
+            src="/images/logo.jpeg"
+            alt="Avimukta Logo"
+            className="h-10 w-auto object-contain"
+          />
 
-          <span className="text-[10px] uppercase tracking-[0.25em] opacity-70 font-medium">
-            IP Services
-          </span>
+          <div className="flex items-baseline gap-2">
+            <span className="font-serif text-xl font-semibold">
+              Avimukta
+            </span>
+
+            <span className="text-[10px] uppercase tracking-[0.25em] opacity-70 font-medium">
+              IP Services
+            </span>
+          </div>
         </Link>
 
         {/* NAV */}
-        <nav className="hidden md:flex items-center gap-12 text-sm tracking-[0.2em] uppercase font-serif font-semibold">
+        <nav className="hidden md:flex items-center gap-10 text-[11px] tracking-[0.28em] uppercase font-serif font-medium">
           {links.map((l) => {
             if (l.label === "About") {
               return (

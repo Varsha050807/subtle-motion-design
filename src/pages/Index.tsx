@@ -4,6 +4,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import { Link } from "react-router-dom";
+import SiteLayout from "@/components/SiteLayout";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -354,54 +355,12 @@ export default function Index() {
 
 
   return (
-    <>
+    <SiteLayout>
       <div
         ref={containerRef}
         className="bg-gradient-to-b from-[#F7F5EF] via-[#f2eee4] to-[#ECE8DF] text-[#0B1523] selection:bg-[#0D2342] selection:text-[#F7F5EF] font-sans overflow-hidden"
       >
 
-
-
-
-        {/* Navigation */}
-        <nav
-          className={`fixed top-[40px] left-0 w-full p-8 z-[100] flex justify-between items-center pointer-events-none transition-all duration-700 ${darkNav
-            ? "text-white bg-[#27445D]/20 backdrop-blur-md"
-            : "text-[#0D2342] bg-[#F7F5EF]/20 backdrop-blur-md"
-            }`}
-        >
-          <div className="flex items-center gap-4 pointer-events-auto">
-            <img src="/images/logo.jpeg" alt="Logo" className="h-16 w-auto object-contain" />          </div>
-
-          {/* TOP HORIZONTAL ROUTING NAVIGATION */}
-          <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex gap-12 text-sm tracking-[0.2em] uppercase font-serif pointer-events-auto">
-            <Link to="/about" className="group relative hover:opacity-100 transition-all duration-500 hover:-translate-y-1">
-              <span>About</span>
-              <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-current scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-            </Link>
-            <Link to="/blog" className="group relative hover:opacity-100 transition-all duration-500 hover:-translate-y-1">
-              <span>Blog</span>
-              <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-current scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-            </Link>
-            <Link to="/services" className="group relative hover:opacity-100 transition-all duration-500 hover:-translate-y-1">
-              <span>Services</span>
-              <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-current scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-            </Link>
-
-            <Link to="/ip-health" className="group relative hover:opacity-100 transition-all duration-500 hover:-translate-y-1">
-              <span>IP Health</span>
-              <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-current scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-            </Link>
-            <Link to="/subscription-model" className="group relative hover:opacity-100 transition-all duration-500 hover:-translate-y-1">
-              <span>Subscription</span>
-              <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-current scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-            </Link>
-          </div>
-
-          <div className="hidden md:flex gap-12 text-sm tracking-[0.2em] uppercase font-light pointer-events-auto">
-            <a href="#contact" className="hover:text-[#ECE8DF] hover:opacity-100 opacity-70 transition-all duration-300">Contact</a>
-          </div>
-        </nav >
 
 
 
@@ -548,6 +507,6 @@ export default function Index() {
         </main>
       </div >
 
-    </>
+    </SiteLayout>
   );
 }

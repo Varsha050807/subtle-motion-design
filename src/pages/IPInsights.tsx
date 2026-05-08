@@ -466,16 +466,17 @@ const IPInsights = () => {
               At 200 cards: 67 batches of 3, each batch staggers independently
               as the user scrolls to it. No global 200-card stagger.
           ─────────────────────────────────────────────────────────────── */}
-                    <div className="w-full md:w-7/12 lg:w-[60%] flex flex-col gap-16 md:gap-20 max-w-xl mx-auto md:mx-0">
-                        {posts.map((post, globalIndex) => (
-                            <JournalCard
-                                key={post.slug}
-                                post={post}
-                                batchIndex={globalIndex % BATCH_SIZE}
-                            />
-                        ))}
+                    <div className="w-full md:w-7/12 lg:w-[60%] max-w-xl mx-auto md:mx-0">
+                        <div className="max-h-[78vh] overflow-y-auto pr-4 space-y-16 md:space-y-20 scrollbar-thin scrollbar-thumb-[#D4AF37]/30 scrollbar-track-transparent">
+                            {posts.map((post, globalIndex) => (
+                                <JournalCard
+                                    key={post.slug}
+                                    post={post}
+                                    batchIndex={globalIndex % BATCH_SIZE}
+                                />
+                            ))}
+                        </div>
                     </div>
-
                 </div>
             </section>
         </SiteLayout>
