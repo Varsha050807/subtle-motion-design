@@ -7,6 +7,7 @@ const links = [
   { to: "/about", label: "About" },
   { to: "/ip-insights", label: "IP Insights" },
   { to: "/ip-health", label: "IP Health" },
+  { to: "/newsletter", label: "Newsletter" },
   { to: "/contact", label: "Contact" },
   { to: "/subscription-model", label: "Subscription" },
 ];
@@ -153,15 +154,7 @@ const Navbar = () => {
         </nav>
 
         {/* CTA */}
-        <Link
-          to="/contact"
-          className={`hidden md:inline-flex items-center text-xs uppercase tracking-[0.2em] border-b pb-0.5 font-semibold transition ${isLightMode
-            ? "border-[#0D2342]/50 hover:opacity-70"
-            : "border-white/50 hover:opacity-80"
-            }`}
-        >
-          Consult
-        </Link>
+
       </div>
     </header>
   );

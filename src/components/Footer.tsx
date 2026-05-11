@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Linkedin, Youtube, Twitter, HelpCircle } from "lucide-react";
-
+import { Linkedin, Youtube } from "lucide-react";
 /* --- FLOATING LEGAL WORDS --- */
 const floatingWords = [
   "Equity", "Justice", "Lex", "Veritas", "Counsel",
@@ -92,7 +91,15 @@ const Footer = () => (
             rel="noopener noreferrer"
             className="hover:text-[#D4AF37] transition-colors"
           >
-            <Twitter size={20} />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.847h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.153h7.594l5.243 6.932 6.064-6.932Zm-1.292 19.49h2.039L6.486 3.24H4.298l13.31 17.404Z" />
+            </svg>
           </a>
 
           <a
@@ -101,7 +108,15 @@ const Footer = () => (
             rel="noopener noreferrer"
             className="hover:text-[#D4AF37] transition-colors"
           >
-            <HelpCircle size={20} />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path d="M15.3 18.6c2.6-1.2 4.2-3.8 4.2-7 0-5-3.1-8.1-7.6-8.1S4.3 6.6 4.3 11.6s3.1 8.1 7.6 8.1c.8 0 1.5-.1 2.2-.3l2.7 3.2h3.2l-3.7-4Zm-3.4-2.1c-2.5 0-4.2-1.8-4.2-4.9s1.7-4.9 4.2-4.9 4.2 1.8 4.2 4.9-1.7 4.9-4.2 4.9Z" />
+            </svg>
           </a>
 
         </div>

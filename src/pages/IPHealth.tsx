@@ -104,8 +104,7 @@ export default function IPHealth() {
             cancelAnimationFrame(animationFrameId);
             ScrollTrigger.getAll().forEach(t => t.kill());
         };
-    }, [mousePos]);
-
+    }, []);
     const MagneticButton = ({ children, className, href }: { children: React.ReactNode, className?: string, href?: string }) => {
         const buttonRef = useRef<HTMLDivElement>(null);
         const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -120,24 +119,60 @@ export default function IPHealth() {
 
         const reset = () => setPosition({ x: 0, y: 0 });
 
-        const content = (
+
+        if (href) {
+            return (
+                <motion.a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-fit"
+                    whileTap={{ scale: 0.98 }}
+                >
+                    <motion.div
+                        ref={buttonRef}
+                        onMouseMove={handleMouse}
+                        onMouseLeave={reset}
+                        animate={{ x: position.x, y: position.y }}
+                        transition={{
+                            type: "spring",
+                            stiffness: 150,
+                            damping: 15,
+                            mass: 0.1
+                        }}
+                        className={`relative overflow-hidden group rounded-full border border-[#D4AF37]/30 flex items-center justify-center cursor-pointer transition-colors duration-500 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10 ${className}`}
+                    >
+                        <span className="relative z-10 flex items-center gap-2">
+                            {children}
+                        </span>
+
+                        <div className="absolute inset-0 z-0 bg-gradient-to-r from-[#D4AF37]/0 via-[#D4AF37]/10 to-[#D4AF37]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
+                    </motion.div>
+                </motion.a>
+            );
+        }
+        return (
             <motion.div
                 ref={buttonRef}
                 onMouseMove={handleMouse}
                 onMouseLeave={reset}
                 animate={{ x: position.x, y: position.y }}
-                transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+                transition={{
+                    type: "spring",
+                    stiffness: 150,
+                    damping: 15,
+                    mass: 0.1
+                }}
                 className={`relative overflow-hidden group rounded-full border border-[#D4AF37]/30 flex items-center justify-center cursor-pointer transition-colors duration-500 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10 ${className}`}
             >
-                <span className="relative z-10 flex items-center gap-2">{children}</span>
+                <span className="relative z-10 flex items-center gap-2">
+                    {children}
+                </span>
+
                 <div className="absolute inset-0 z-0 bg-gradient-to-r from-[#D4AF37]/0 via-[#D4AF37]/10 to-[#D4AF37]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
             </motion.div>
         );
 
-        if (href) {
-            return <a href={href} target="_blank" rel="noopener noreferrer" className="block w-fit">{content}</a>;
-        }
-        return content;
     };
 
     const diagnostics = [

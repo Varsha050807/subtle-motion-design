@@ -16,6 +16,7 @@ import Disclaimer from "./components/Disclaimer.tsx";
 import IPInsights from "./pages/IPInsights.tsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Team from "./pages/Team.tsx";
+import Newsletter from "./pages/Newsletter.tsx";
 import SubscriptionModel from "./pages/SubscriptionModel.tsx";
 import { MessageCircle } from "lucide-react";
 
@@ -107,6 +108,7 @@ tracking-wide border-b border-white/10">
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/ip-health" element={<IPHealth />} />
+          <Route path="/newsletter" element={<Newsletter />} />
           <Route path="/subscription-model" element={<SubscriptionModel />} />
           <Route path="/ip-insights" element={<IPInsights />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />

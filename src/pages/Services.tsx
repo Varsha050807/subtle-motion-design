@@ -29,7 +29,7 @@ const SERVICE_CATEGORIES = [
           "Design defines perception. We secure protection for the visual aspects of products, including shape, configuration, and ornamentation, managing filings, examinations, oppositions, renewals, and enforcement, ensuring your designs remain exclusively yours across their full lifecycle of commercial use.", image: "https://www.studiored.com/wp-content/uploads/2021/07/industrial-design-companies-hero.webp?x83661"
       },
       {
-        n: "05", title: "Paralegal Services", body: "Docketing, renewals, and administrative IP support.", detailedBody:
+        n: "05", title: "Patent Illustration", body: "Docketing, renewals, and administrative IP support.", detailedBody:
           "Precision matters in every figure. We create technically accurate, jurisdiction-compliant patent drawings across mechanical, chemical, electrical, design, and software domains, delivering clear, examiner-ready visuals that strengthen specifications, support claims, and enhance the overall quality of your patent filings.", image: "https://www.writinglaw.com/wp-content/uploads/2023/04/Paralegal-Services.png"
       },
     ]
