@@ -1,4 +1,4 @@
-import { NavLink, Link, useLocation } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 
 const links = [
@@ -7,16 +7,17 @@ const links = [
   { to: "/about", label: "About" },
   { to: "/ip-insights", label: "IP Insights" },
   { to: "/ip-health", label: "IP Health" },
+  { to: "/newsletter", label: "Newsletter" },
   { to: "/contact", label: "Contact" },
   { to: "/subscription-model", label: "Subscription" },
 ];
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
-  const location = useLocation();
+
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const isHome = location.pathname === "/";
+
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -35,14 +36,15 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const isLightMode = isHome && !scrolled;
+
 
   return (
     <header
-      className={`fixed inset-x-0 top-[32px] z-50 transition-all duration-700 ${scrolled
-        ? "bg-[#27445D]/80 backdrop-blur-xl border-b border-white/10"
-        : "bg-transparent"
-        } ${isLightMode ? "text-[#0D2342]" : "text-white"}`}
+      className={`fixed inset-x-0 top-[32px] z-50 transition-all duration-700
+  ${scrolled
+          ? "bg-[#27445D]/85 backdrop-blur-xl border-b border-white/10 text-white shadow-[0_10px_40px_rgba(0,0,0,0.25)]"
+          : "bg-[#27445D]/70 backdrop-blur-md border-b border-white/5 text-white"
+        }`}
     >
       <div className="container flex h-16 items-center justify-between">
 
@@ -153,15 +155,7 @@ const Navbar = () => {
         </nav>
 
         {/* CTA */}
-        <Link
-          to="/contact"
-          className={`hidden md:inline-flex items-center text-xs uppercase tracking-[0.2em] border-b pb-0.5 font-semibold transition ${isLightMode
-            ? "border-[#0D2342]/50 hover:opacity-70"
-            : "border-white/50 hover:opacity-80"
-            }`}
-        >
-          Consult
-        </Link>
+
       </div>
     </header>
   );

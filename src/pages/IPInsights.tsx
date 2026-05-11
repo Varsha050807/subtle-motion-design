@@ -1,372 +1,384 @@
-import SiteLayout from "@/components/SiteLayout";
+// IPInsights.tsx
+// Place at: src/pages/IPInsights.tsx
+
+import { useRef } from "react";
 import { Link } from "react-router-dom";
-import { motion, useReducedMotion } from "framer-motion";
-import blog1 from "@/assets/blog1.jpg";
-import blog2 from "@/assets/blog2.jpg";
-import blog3 from "@/assets/blog3.jpg";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import SiteLayout from "@/components/SiteLayout";
+import { posts } from "@/pages/posts";
 
+// ─── Easing curves ────────────────────────────────────────────────────────────
+const EASE_EXPO = [0.16, 1, 0.3, 1] as const;
+const EASE_CIRC = [0.25, 0.1, 0.25, 1] as const;
 
-// ─── Data ────────────────────────────────────────────────────────────────────
+// ─── Hero ambient orb ─────────────────────────────────────────────────────────
+const AmbientOrb = ({ className }: { className: string }) => (
+    <motion.div
+        className={`absolute rounded-full blur-[120px] pointer-events-none ${className}`}
+        animate={{ scale: [1, 1.08, 1], opacity: [0.6, 0.9, 0.6] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+    />
+);
 
-export const posts = [
-    {
-        slug: "startup-spent-x-lakhs-patents",
-        title:
-            "Startup spent ₹X lakhs on patents — still lost to a copycat. What broke?",
-        excerpt:
-            "A practical look at where patent strategy fails: filing without enforceability, weak claim architecture, and missing commercial alignment.",
-        image: blog1,
-        date: "May 2026",
-        read: "5 min",
-        category: "Patent Strategy",
-        external:
-            "https://www.linkedin.com/pulse/startup-spent-x-lakhs-patents-still-lost-copycat-what-b-manur-phd--2ivfc/?trackingId=h1huJjO0R02ZP%2F4pCk7UUg%3D%3D",
-    },
-    {
-        slug: "your-research-probably-patentable",
-        title: "Your research is probably patentable. Here's why you never filed.",
-        excerpt:
-            "Many valuable inventions never become protected assets—not because they lack novelty, but because they were never identified, captured, or strategically filed.",
-        image: blog2,
-        date: "May 2026",
-        read: "4 min",
-        category: "Research & Patents",
-        external:
-            "https://www.linkedin.com/pulse/your-research-probably-patentable-here-why-you-never-filed-b-manur-8ncmc/?trackingId=vtaDwHxbSqS3yPY78wM8fg%3D%3D",
-    },
-    {
-        slug: "why-filing-too-early",
-        title:
-            "Why filing a patent too early is just as dangerous as filing too late",
-        excerpt:
-            "Patent timing is strategy. File too early and protection may be weak; file too late and novelty may already be lost.",
-        image: blog3,
-        date: "March 2026",
-        read: "5 min",
-        category: "Patent Timing",
-        external:
-            "https://www.linkedin.com/pulse/why-filing-patent-too-early-just-dangerous-late-b-manur-phd--s5s3c/?trackingId=TsKRKX%2FMQb%2B8k%2BPA4A8C8g%3D%3D",
-    },
-    {
-        slug: "developer-owns-your-invention",
-        title:
-            "You are about to lose your patent rights because your developer owns your invention",
-        excerpt:
-            "Many founders assume payment equals ownership. In IP law, without assignment agreements, the creator may legally own what your company built.",
-        image: "/images/image4.png",
-        date: "March 2026",
-        read: "4 min",
-        category: "IP Ownership",
-        external:
-            "https://www.linkedin.com/pulse/you-lose-your-patent-rights-because-developer-owns-b-manur-phd--rwgrc/?trackingId=lMIlYrW4RNCC50I4nQQAtQ%3D%3D",
-    },
-    {
-        slug: "should-i-file-a-patent",
-        title: `"If you have invented something and are asking 'Should I file a patent?'"`,
-        excerpt:
-            "The better question is not whether to file, but what exactly is protectable, when to file, and how to structure protection strategically.",
-        image: "/images/image5.png",
-        date: "March 2026",
-        read: "4 min",
-        category: "Patent Filing",
-        external:
-            "https://www.linkedin.com/pulse/you-have-invented-something-asking-should-i-file-b-manur-phd--glzlc/?trackingId=lMIlYrW4RNCC50I4nQQAtQ%3D%3D",
-    },
-    {
-        slug: "drafting-as-a-discipline",
-        title:
-            "Drafting as a discipline: why the patent specification is a literary form",
-        excerpt:
-            "A claim is read more often by adversaries than by examiners. Compose accordingly.",
-        image: "/images/image6.png",
-        date: "April 2026",
-        read: "8 min",
-        category: "Patents",
-    },
-    {
-        slug: "the-quiet-trademark",
-        title:
-            "The quiet trademark: brand protection that begins before the launch",
-        excerpt:
-            "Clearance done early is clearance done once. A short guide for founders.",
-        image: "/images/image7.png",
-        date: "March 2026",
-        read: "6 min",
-        category: "Trademarks",
-    },
-    {
-        slug: "litigation-as-last-recourse",
-        title: "Litigation as last recourse: the case for considered restraint",
-        excerpt:
-            "The most successful enforcement strategies rarely see a courtroom. Here is why.",
-        image: "/images/image8.png",
-        date: "February 2026",
-        read: "10 min",
-        category: "Disputes",
-    },
-    {
-        slug: "portfolio-as-inheritance",
-        title:
-            "Portfolios as inheritance: building IP that outlives the team that built it",
-        excerpt:
-            "Documentation is the rarest virtue in IP management — and the most valuable.",
-        image: "/images/image9.png",
-        date: "January 2026",
-        read: "7 min",
-        category: "Strategy",
-    },
-];
+// ─── Staggered hero word reveal ───────────────────────────────────────────────
+const HeroWord = ({
+    children,
+    delay,
+    italic,
+}: {
+    children: string;
+    delay: number;
+    italic?: boolean;
+}) => (
+    <span className="inline-block overflow-hidden">
+        <motion.span
+            className={`inline-block ${italic ? "italic" : ""}`}
+            initial={{ y: "110%", opacity: 0 }}
+            animate={{ y: "0%", opacity: 1 }}
+            transition={{ duration: 1.1, delay, ease: EASE_EXPO }}
+        >
+            {children}
+        </motion.span>
+    </span>
+);
 
-
-
-const heroFadeUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: (i: number) => ({
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 1.2,
-            delay: i * 0.15,
-            ease: [0.25, 0.1, 0.25, 1],
-        },
-    }),
-};
-
-// ─── JournalCard component ────────────────────────────────────────────────────
-
-interface Post {
-    slug: string;
-    title: string;
-    excerpt: string;
-    image: string;
-    date?: string;
-    read?: string;
-    category: string;
-    external?: string;
+// ─── Journal card ─────────────────────────────────────────────────────────────
+interface CardProps {
+    post: (typeof posts)[number];
+    index: number;
 }
 
-interface JournalCardProps {
-    post: Post;
-    /**
-     * batchIndex: position of this card within its batch (0, 1, or 2).
-     * Used to compute stagger delay. Always < BATCH_SIZE.
-     * Computed as: globalIndex % BATCH_SIZE
-     */
-    batchIndex: number;
-}
+const JournalCard = ({ post, index }: CardProps) => {
+    const shouldReduceMotion = useReducedMotion();
+    const batchDelay = (index % 2) * 0.12;
 
-/**
- * JournalCard
- *
- * Self-contained motion scope. Each card:
- *   1. Observes its own viewport entry (Intersection Observer via Framer Motion)
- *   2. Fires its own animation independently
- *   3. Staggers only within its batch group (batchIndex * STAGGER_STEP)
- *   4. Has hover micro-interactions scoped to itself
- *
- * Scalability: Adding 200 more cards adds 200 independent observers.
- * Each observer fires once (once: true) then disconnects.
- * No global animation state, no index-based global delays.
- */
-
-
-// ─── Page component ───────────────────────────────────────────────────────────
-
-const IPInsights = () => {
     return (
-        <SiteLayout>
-            {/* ═══════════════════════════════════════════════════════════════════
-          HERO — animation system UNCHANGED from original.
-          Only the journal listing section below has been modified.
-      ═══════════════════════════════════════════════════════════════════ */}
-            <section className="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden bg-[#27445D] text-[#F7F5EF] pt-20">
-                <div className="absolute inset-0 opacity-10 pointer-events-none overflow-hidden">
-                    <div className="absolute top-[20%] left-[10%] w-[40vw] h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
-                    <div className="absolute top-[70%] left-[30%] w-[60vw] h-[1px] bg-gradient-to-r from-transparent via-white to-transparent" />
-                    <div className="absolute top-[10%] right-[5%] w-[40vw] h-[40vw] border border-white/5 rounded-full" />
-                </div>
+        <motion.article
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 48 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.9, delay: batchDelay, ease: EASE_EXPO }}
+            className="group relative"
+        >
+            <Link to={`/blog/${post.slug}`} className="block h-full outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] rounded-2xl">
+                {/* Card shell */}
+                <div className="relative h-full flex flex-col overflow-hidden rounded-2xl border border-white/[0.06] bg-[#0f1e2b]/70 backdrop-blur-sm transition-all duration-700 group-hover:border-[#D4AF37]/20 group-hover:bg-[#0f1e2b]/90">
 
-                <motion.div
-                    initial="hidden"
-                    animate="visible"
-                    className="container relative z-10 text-center"
-                >
-                    <motion.p
-                        custom={0}
-                        variants={heroFadeUp}
-                        className="text-xs md:text-sm tracking-[0.3em] uppercase text-[#D4AF37] mb-6"
-                    >
-                        IP Insights
-                    </motion.p>
+                    {/* Image */}
+                    <div className="relative overflow-hidden aspect-[16/10] shrink-0">
+                        <motion.img
+                            src={post.image}
+                            alt={post.title}
+                            loading="lazy"
+                            className="w-full h-full object-cover"
+                            whileHover={{ scale: 1.05 }}
+                            transition={{ duration: 0.8, ease: EASE_CIRC }}
+                        />
+                        {/* Image overlay gradient */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0f1e2b] via-[#0f1e2b]/20 to-transparent" />
 
-                    <motion.h1
-                        custom={1}
-                        variants={heroFadeUp}
-                        className="font-serif text-5xl md:text-6xl lg:text-[7rem] leading-[1] tracking-tight"
-                    >
-                        <span className="block text-white">Considered writing.</span>
-                        <span className="block italic text-[#8BA4BD] mt-2 font-light">
-                            Enduring ideas.
-                        </span>
-                    </motion.h1>
-
-                    <motion.p
-                        custom={2}
-                        variants={heroFadeUp}
-                        className="mt-8 md:mt-10 text-base md:text-lg max-w-2xl mx-auto text-[#ECE8DF]/80 font-light leading-relaxed"
-                    >
-                        Quarterly essays on patents, trademarks, disputes, and the
-                        architecture of intellectual property.
-                    </motion.p>
-                </motion.div>
-            </section>
-
-            <div className="hairline container" />
-
-            {/* ═══════════════════════════════════════════════════════════════════
-          JOURNAL LISTING — redesigned animation system
-          ─────────────────────────────────────────────────────────────────
-          Layout structure: UNCHANGED (two-column, left video, right cards)
-          Sticky left panel: KEPT (it's a layout feature, not animation)
-          Animation: REPLACED (see JournalCard above)
-      ═══════════════════════════════════════════════════════════════════ */}
-            <section className="container py-16 md:py-24">
-                <div className="flex flex-col md:flex-row gap-12 lg:gap-20 items-start relative max-w-6xl mx-auto">
-
-                    {/* ── Left: Video panel ─────────────────────────────────────────
-              CHANGE: Removed scroll-linked motion on this panel.
-              The sticky positioning is preserved (layout decision, not motion).
-              Animation: simple whileInView fade-up, fires once.
-              No scroll-position coupling, no parallax.
-          ─────────────────────────────────────────────────────────────── */}
-
-
-                    {/* ── Right: Journal cards ───────────────────────────────────────
-              Each <JournalCard> is fully self-contained.
-              Batch stagger: batchIndex = globalIndex % BATCH_SIZE
-              → cards 0,1,2 stagger together; cards 3,4,5 form next batch; etc.
-              At 200 cards: 67 batches of 3, each batch staggers independently
-              as the user scrolls to it. No global 200-card stagger.
-          ─────────────────────────────────────────────────────────────── */}
-
-                    <div className="relative max-w-6xl mx-auto space-y-24">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                            {posts.map((post, index) => (
-                                <motion.div
-                                    key={post.slug}
-                                    initial={{
-                                        opacity: 0,
-                                        y: 40,
-                                    }}
-                                    whileInView={{
-                                        opacity: 1,
-                                        y: 0,
-                                    }}
-                                    viewport={{
-                                        once: true,
-                                        amount: 0.2,
-                                    }}
-                                    transition={{
-                                        duration: 0.8,
-                                        delay: index * 0.08,
-                                        ease: [0.22, 1, 0.36, 1],
-                                    }}
-                                >
-                                    {post.external ? (
-                                        <a
-                                            href={post.external}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="group block h-full"
-                                        >
-                                            <div className="h-full bg-white/80 dark:bg-[#111]/80 backdrop-blur-md border border-black/5 dark:border-white/10 rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)] transition-all duration-500">
-
-                                                <div className="overflow-hidden">
-                                                    <img
-                                                        src={post.image}
-                                                        alt={post.title}
-                                                        className="w-full aspect-[16/9] object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                                                    />
-                                                </div>
-
-                                                <div className="p-8">
-                                                    <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] text-neutral-500 mb-4">
-                                                        <span className="text-[#D4AF37]">
-                                                            {post.category}
-                                                        </span>
-
-                                                        <span>•</span>
-                                                        <span>{post.date}</span>
-
-                                                        <span>•</span>
-                                                        <span>{post.read}</span>
-                                                    </div>
-
-                                                    <h2 className="font-serif text-3xl leading-[1.3] mb-4 text-[#1A1A1A] dark:text-white">
-                                                        {post.title}
-                                                    </h2>
-
-                                                    <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed font-light">
-                                                        {post.excerpt}
-                                                    </p>
-
-                                                    <div className="mt-6">
-                                                        <span className="text-xs uppercase tracking-[0.15em] border-b border-[#D4AF37]/30 pb-1">
-                                                            Read Essay
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    ) : (
-                                        <Link
-                                            to={`/blog/${post.slug}`}
-                                            className="group block h-full"
-                                        >
-                                            <div className="h-full bg-white/80 dark:bg-[#111]/80 backdrop-blur-md border border-black/5 dark:border-white/10 rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)] transition-all duration-500">
-
-                                                <div className="overflow-hidden">
-                                                    <img
-                                                        src={post.image}
-                                                        alt={post.title}
-                                                        className="w-full aspect-[16/9] object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                                                    />
-                                                </div>
-
-                                                <div className="p-8">
-                                                    <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] text-neutral-500 mb-4">
-                                                        <span className="text-[#D4AF37]">
-                                                            {post.category}
-                                                        </span>
-
-                                                        <span>•</span>
-                                                        <span>{post.date}</span>
-
-                                                        <span>•</span>
-                                                        <span>{post.read}</span>
-                                                    </div>
-
-                                                    <h2 className="font-serif text-3xl leading-[1.3] mb-4 text-[#1A1A1A] dark:text-white">
-                                                        {post.title}
-                                                    </h2>
-
-                                                    <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed font-light">
-                                                        {post.excerpt}
-                                                    </p>
-
-                                                    <div className="mt-6">
-                                                        <span className="text-xs uppercase tracking-[0.15em] border-b border-[#D4AF37]/30 pb-1">
-                                                            Read Essay
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </Link>
-                                    )}
-                                </motion.div>
-                            ))}
+                        {/* Category badge */}
+                        <div className="absolute top-5 left-5">
+                            <span className="inline-flex items-center gap-1.5 text-[10px] tracking-[0.22em] uppercase font-medium text-[#D4AF37] bg-[#0f1e2b]/80 backdrop-blur-sm border border-[#D4AF37]/30 px-3 py-1.5 rounded-full">
+                                {post.category}
+                            </span>
                         </div>
                     </div>
+
+                    {/* Body */}
+                    <div className="flex flex-col flex-1 p-8 pt-7">
+                        {/* Meta */}
+                        <div className="flex items-center gap-3 text-[10px] tracking-[0.2em] uppercase text-[#8BA4BD]/60 mb-5">
+                            <time>{post.date}</time>
+                            <span className="w-1 h-1 rounded-full bg-[#D4AF37]/40" />
+                            <span>{post.read}</span>
+                        </div>
+
+                        {/* Title */}
+                        <h2 className="font-serif text-[1.35rem] leading-[1.35] text-[#ECE8DF] mb-4 transition-colors duration-300 group-hover:text-white">
+                            {post.title}
+                        </h2>
+
+                        {/* Excerpt */}
+                        <p className="text-sm leading-relaxed text-[#8BA4BD]/70 font-light flex-1">
+                            {post.excerpt}
+                        </p>
+
+                        {/* CTA */}
+                        <div className="mt-7 flex items-center gap-2 text-[11px] tracking-[0.18em] uppercase text-[#D4AF37]/80 transition-all duration-300 group-hover:text-[#D4AF37] group-hover:gap-3">
+                            <span>Read Essay</span>
+                            <svg
+                                width="16"
+                                height="10"
+                                viewBox="0 0 16 10"
+                                fill="none"
+                                className="transition-transform duration-300 group-hover:translate-x-1"
+                            >
+                                <path
+                                    d="M1 5h14M11 1l4 4-4 4"
+                                    stroke="currentColor"
+                                    strokeWidth="1.2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                        </div>
+                    </div>
+
+                    {/* Bottom gold line reveal on hover */}
+                    <motion.div
+                        className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-[#D4AF37]/0 via-[#D4AF37] to-[#D4AF37]/0"
+                        initial={{ scaleX: 0 }}
+                        whileHover={{ scaleX: 1 }}
+                        transition={{ duration: 0.5, ease: EASE_EXPO }}
+                        style={{ transformOrigin: "left center" }}
+                    />
+                </div>
+            </Link>
+        </motion.article>
+    );
+};
+
+// ─── Featured card (first post, full-width) ───────────────────────────────────
+const FeaturedCard = ({ post }: { post: (typeof posts)[number] }) => (
+    <motion.article
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 1.1, ease: EASE_EXPO }}
+        className="group relative col-span-full"
+    >
+        <Link to={`/blog/${post.slug}`} className="block outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] rounded-2xl">
+            <div className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-[#0f1e2b]/70 backdrop-blur-sm transition-all duration-700 group-hover:border-[#D4AF37]/20 md:flex md:min-h-[460px]">
+
+                {/* Image — left half on md+ */}
+                <div className="relative overflow-hidden md:w-1/2 shrink-0 aspect-[16/10] md:aspect-auto">
+                    <motion.img
+                        src={post.image}
+                        alt={post.title}
+                        loading="eager"
+                        className="w-full h-full object-cover"
+                        whileHover={{ scale: 1.04 }}
+                        transition={{ duration: 0.9, ease: EASE_CIRC }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#0f1e2b] hidden md:block" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0f1e2b] via-transparent to-transparent md:hidden" />
+                </div>
+
+                {/* Content — right half */}
+                <div className="relative flex flex-col justify-center p-10 md:p-14 md:w-1/2">
+                    {/* Featured label */}
+                    <motion.p
+                        initial={{ opacity: 0, x: -12 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.7, delay: 0.3, ease: EASE_EXPO }}
+                        className="text-[10px] tracking-[0.3em] uppercase text-[#D4AF37] mb-5 flex items-center gap-2"
+                    >
+                        <span className="w-6 h-px bg-[#D4AF37]" />
+                        Featured Essay
+                    </motion.p>
+
+                    <div className="inline-flex items-center gap-2 mb-5">
+                        <span className="text-[10px] tracking-[0.2em] uppercase text-[#8BA4BD]/60">{post.category}</span>
+                        <span className="w-1 h-1 rounded-full bg-[#D4AF37]/40" />
+                        <span className="text-[10px] tracking-[0.2em] uppercase text-[#8BA4BD]/60">{post.date}</span>
+                        <span className="w-1 h-1 rounded-full bg-[#D4AF37]/40" />
+                        <span className="text-[10px] tracking-[0.2em] uppercase text-[#8BA4BD]/60">{post.read}</span>
+                    </div>
+
+                    <h2 className="font-serif text-3xl md:text-[2.4rem] leading-[1.25] text-[#ECE8DF] mb-6 transition-colors duration-300 group-hover:text-white">
+                        {post.title}
+                    </h2>
+
+                    <p className="text-[#8BA4BD]/70 font-light leading-relaxed mb-8">
+                        {post.excerpt}
+                    </p>
+
+                    <div className="flex items-center gap-2.5 text-[11px] tracking-[0.18em] uppercase text-[#D4AF37]/80 transition-all duration-300 group-hover:text-[#D4AF37] group-hover:gap-4">
+                        <span>Read Essay</span>
+                        <svg width="20" height="10" viewBox="0 0 20 10" fill="none" className="transition-transform duration-300 group-hover:translate-x-1.5">
+                            <path d="M1 5h18M14 1l5 4-5 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </Link>
+    </motion.article>
+);
+
+// ─── Scroll indicator ─────────────────────────────────────────────────────────
+const ScrollIndicator = () => (
+    <motion.div
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#8BA4BD]/40"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 2, duration: 0.8 }}
+    >
+
+        <motion.div
+            className="w-px h-8 bg-gradient-to-b from-[#D4AF37]/60 to-transparent"
+            animate={{ scaleY: [1, 0.4, 1], opacity: [0.6, 1, 0.6] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            style={{ transformOrigin: "top center" }}
+        />
+    </motion.div>
+);
+
+// ─── Section divider ──────────────────────────────────────────────────────────
+const Hairline = () => (
+    <div className="relative my-16 md:my-24">
+        <div className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/25 to-transparent" />
+    </div>
+);
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
+const IPInsights = () => {
+    const heroRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+    const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
+    const heroOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+
+    const [featured, ...rest] = posts;
+
+    return (
+        <SiteLayout>
+            {/* ══════════════════════════════════════════════════════
+          HERO
+      ══════════════════════════════════════════════════════ */}
+            <section
+                ref={heroRef}
+                className="relative min-h-[88vh] flex flex-col items-center justify-center overflow-hidden bg-[#0a1520] pt-20"
+            >
+                {/* Ambient background orbs */}
+                <AmbientOrb className="w-[600px] h-[600px] bg-[#27445D]/60 top-[-10%] left-[-8%]" />
+                <AmbientOrb className="w-[400px] h-[400px] bg-[#D4AF37]/8 bottom-[0%] right-[5%]" />
+                <AmbientOrb className="w-[300px] h-[300px] bg-[#1a3348]/80 top-[30%] right-[-5%]" />
+
+                {/* Geometric lines */}
+                <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-[0.07]">
+                    <div className="absolute top-[22%] left-[8%] w-[45vw] h-px bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
+                    <div className="absolute top-[75%] left-[25%] w-[60vw] h-px bg-gradient-to-r from-transparent via-white to-transparent" />
+                    <div className="absolute top-[10%] right-[4%] w-[38vw] h-[38vw] border border-white/20 rounded-full" />
+                    <div className="absolute bottom-[5%] left-[2%] w-[20vw] h-[20vw] border border-[#D4AF37]/30 rounded-full" />
+                </div>
+
+                {/* Hero content with parallax */}
+                <motion.div
+                    style={{ y: heroY, opacity: heroOpacity }}
+                    className="relative z-10 container text-center"
+                >
+                    <motion.p
+                        initial={{ opacity: 0, letterSpacing: "0.1em" }}
+                        animate={{ opacity: 1, letterSpacing: "0.3em" }}
+                        transition={{ duration: 1.4, ease: EASE_EXPO }}
+                        className="text-[10px] md:text-xs tracking-[0.3em] uppercase text-[#D4AF37] mb-8 flex items-center justify-center gap-3"
+                    >
+                        <span className="w-10 h-px bg-[#D4AF37]/50" />
+                        IP Insights
+                        <span className="w-10 h-px bg-[#D4AF37]/50" />
+                    </motion.p>
+
+                    <h1 className="font-serif text-[clamp(3.2rem,10vw,8rem)] leading-[0.95] tracking-tight mb-8">
+                        <div className="overflow-hidden">
+                            <span className="text-[#8BA4BD] font-light italic">
+                                <HeroWord delay={0.2}>Considered</HeroWord>
+                                {" "}
+                                <HeroWord delay={0.32}>writing.</HeroWord>
+                            </span>
+                        </div>
+                        <div className="overflow-hidden mt-2">
+                            <motion.span
+                                className="inline-block italic text-[#8BA4BD] font-light"
+                                initial={{ y: "110%", opacity: 0 }}
+                                animate={{ y: "0%", opacity: 1 }}
+                                transition={{ duration: 1.1, delay: 0.52, ease: EASE_EXPO }}
+                            >
+                                Enduring ideas.
+                            </motion.span>
+                        </div>
+                    </h1>
+
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, delay: 0.85, ease: EASE_EXPO }}
+                        className="mt-6 text-base md:text-lg max-w-xl mx-auto text-[#8BA4BD]/70 font-light leading-relaxed"
+                    >
+                        Quarterly essays on patents, trademarks, disputes,{" "}
+                        <br className="hidden md:block" />
+                        and the architecture of intellectual property.
+                    </motion.p>
+
+                    {/* Issue count */}
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 1.2, duration: 0.8 }}
+                        className="mt-10 text-[10px] tracking-[0.25em] uppercase text-[#8BA4BD]/35"
+                    >
+                        {posts.length} essays · Vol. I
+                    </motion.p>
+                </motion.div>
+
+                <ScrollIndicator />
+            </section>
+
+            {/* ══════════════════════════════════════════════════════
+          JOURNAL LISTING
+      ══════════════════════════════════════════════════════ */}
+            <section className="relative bg-[#F7F5EF] min-h-screen">
+                {/* Subtle background texture */}
+                <div
+                    className="absolute inset-0 opacity-[0.04] pointer-events-none"
+                    style={{
+                        backgroundImage:
+                            "radial-gradient(circle at 1px 1px, rgba(13,35,66,0.18) 1px, transparent 0)",
+                        backgroundSize: "32px 32px",
+                    }}
+                />
+
+                <div className="container relative z-10 py-20 md:py-32 max-w-6xl mx-auto px-4 md:px-8">
+
+                    {/* Section label */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, ease: EASE_EXPO }}
+                        className="flex items-center gap-4 mb-14"
+                    >
+                        <span className="w-8 h-px bg-[#D4AF37]/60" />
+                        <span className="text-[10px] tracking-[0.3em] uppercase text-[#D4AF37]/70">
+                            The Journal
+                        </span>
+                    </motion.div>
+
+                    {/* Featured post */}
+                    <FeaturedCard post={featured} />
+
+                    <Hairline />
+
+                    {/* Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-7 lg:gap-9">
+                        {rest.map((post, i) => (
+                            <JournalCard key={post.slug} post={post} index={i} />
+                        ))}
+                    </div>
+
+                    {/* Footer note */}
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: 0.3 }}
+                        className="mt-24 text-center"
+                    >
+                        <div className="w-px h-12 bg-gradient-to-b from-[#D4AF37]/30 to-transparent mx-auto mb-6" />
+                        <p className="text-[10px] tracking-[0.25em] uppercase text-[#8BA4BD]/30">
+                            All essays © {new Date().getFullYear()} · All rights reserved
+                        </p>
+                    </motion.div>
                 </div>
             </section>
         </SiteLayout>
