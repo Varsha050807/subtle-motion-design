@@ -417,7 +417,7 @@ export default function Index() {
               <div className="service-panel h-screen w-full flex items-center justify-center relative shrink-0">
                 <div className="max-w-5xl px-8 md:px-0 text-center relative z-10">
                   <HoverHeading>
-                    <h3 className="text-6xl md:text-[9rem] font-serif mb-8 text-[#ECE8DF]">Patent Analytics</h3>
+                    <h3 className="text-6xl md:text-[9rem] font-serif mb-8 text-[#ECE8DF]">Patent</h3>
                   </HoverHeading>
                   <p className="text-lg md:text-3xl font-light text-[#5E748E] max-w-3xl mx-auto leading-relaxed mt-12">
                     Securing technical frontiers. Comprehensive drafting, prosecution, and patent analytics for complex utility and design assets.                  </p>

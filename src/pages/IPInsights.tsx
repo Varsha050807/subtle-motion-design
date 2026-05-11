@@ -117,81 +117,7 @@ export const posts = [
     },
 ];
 
-// ─── Animation constants ──────────────────────────────────────────────────────
 
-/**
- * BATCH_SIZE: number of cards that share a stagger group.
- * Cards beyond this reset to index 0 within the next batch.
- * Keeps max concurrent animations capped at 3 regardless of total card count.
- */
-const BATCH_SIZE = 3;
-
-/**
- * STAGGER_STEP: delay between cards within a batch (seconds).
- * 80ms is subtle enough to feel editorial, not performative.
- */
-const STAGGER_STEP = 0.08;
-
-// ─── Shared motion variants ───────────────────────────────────────────────────
-
-/**
- * cardVariants — viewport enter animation
- *
- * fade-up: opacity 0→1, y 24px→0
- * scale-in: 0.98→1 (premium editorial micro-compression)
- * duration 0.55s with ease-out curve: fast settle, no lingering motion
- *
- * `reducedMotion` variant skips all transforms; only opacity fades.
- * Framer Motion automatically respects prefers-reduced-motion via
- * `useReducedMotion()` — we handle it explicitly for full control.
- */
-const cardVariants = {
-    hidden: {
-        opacity: 0,
-        y: 24,
-        scale: 0.98,
-    },
-    visible: {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        transition: {
-            duration: 0.55,
-            ease: [0.22, 1, 0.36, 1], // custom ease-out: quick accel, soft land
-        },
-    },
-    // Reduced-motion: opacity only, instant settle
-    hiddenReduced: {
-        opacity: 0,
-    },
-    visibleReduced: {
-        opacity: 1,
-        transition: { duration: 0.3, ease: "easeOut" },
-    },
-};
-
-/**
- * hoverVariants — card hover state
- *
- * lift: y -4px (not -translate-y-1 which is 4px CSS, same value — but now
- * GPU-composited via Framer Motion, not a CSS class on the anchor)
- * Shadow is applied via className change on hover (CSS custom property trick)
- * because box-shadow is NOT GPU-composited and should stay in CSS.
- *
- * Note: whileHover on motion.div is better than CSS :hover on <a> because
- * it composes cleanly with whileInView state without specificity conflicts.
- */
-const hoverVariants = {
-    rest: { y: 0 },
-    hover: {
-        y: -4,
-        transition: { duration: 0.25, ease: [0.25, 0.1, 0.25, 1] },
-    },
-};
-
-// ─── Hero section animation ───────────────────────────────────────────────────
-// UNCHANGED from original — this is the hero, not the journal listing.
-// Re-typed here for completeness; no logic modified.
 
 const heroFadeUp = {
     hidden: { opacity: 0, y: 30 },
@@ -242,135 +168,7 @@ interface JournalCardProps {
  * Each observer fires once (once: true) then disconnects.
  * No global animation state, no index-based global delays.
  */
-const JournalCard = ({ post, batchIndex }: JournalCardProps) => {
-    const prefersReducedMotion = useReducedMotion();
 
-    const enterVariant = prefersReducedMotion ? "visibleReduced" : "visible";
-    const hiddenVariant = prefersReducedMotion ? "hiddenReduced" : "hidden";
-
-    const staggerDelay = prefersReducedMotion ? 0 : batchIndex * STAGGER_STEP;
-
-    const cardContent = (
-        /**
-         * Outer motion.div: handles viewport-enter animation (whileInView)
-         * Inner structure: image container + text — no motion on children,
-         * keeping the DOM motion node count minimal.
-         */
-        <motion.div
-            // ── Viewport-enter animation ──────────────────────────────────
-            variants={cardVariants}
-            initial={hiddenVariant}
-            whileInView={enterVariant}
-            viewport={{
-                once: true,      // Disconnect observer after first trigger
-                amount: 0.15,    // Fire when 15% of card is visible — early reveal
-            }}
-            // ── Per-card stagger via transition override ───────────────────
-            // We override transition.delay here rather than in variants so
-            // the batchIndex prop can influence it without variant coupling.
-            transition={{
-                duration: 0.55,
-                ease: [0.22, 1, 0.36, 1],
-                delay: staggerDelay,
-            }}
-            // ── Hover lift (GPU-composited y transform only) ───────────────
-            whileHover={prefersReducedMotion ? undefined : "hover"}
-            animate="rest"
-            // Merge rest/hover variants for lift
-            // hoverVariants handles y; shadow handled in CSS below
-            style={{ originY: 1 }} // scale from bottom for natural grounding
-            className={[
-                "group flex flex-col",
-                // CSS shadow elevation on hover — NOT GPU-composited intentionally.
-                // box-shadow stays in CSS; transform stays in Framer Motion.
-                // This is the correct separation of concerns.
-                "transition-shadow duration-300",
-                "hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)]",
-                "rounded-lg",
-            ].join(" ")}
-        >
-            {/* ── Image container ─────────────────────────────────────────── */}
-            <div className="overflow-hidden bg-[#F8F8F8] dark:bg-[#1A1A1A] rounded-lg mb-5">
-                {/*
-         * Image zoom via CSS transform (not Framer Motion motion.img).
-         * Reason: CSS transform on an already-composited layer (the parent
-         * has overflow:hidden) is cheaper than adding another Framer Motion
-         * node. The group-hover CSS class is sufficient here.
-         * Scale range: 1 → 1.04 (within 1.02–1.05 spec).
-         */}
-                <img
-                    src={post.image}
-                    alt={post.title}
-                    loading="lazy"
-                    width={1200}
-                    height={900}
-                    className={[
-                        "w-full aspect-[16/9] max-h-[240px] object-cover",
-                        // Image zoom: CSS transform, GPU-composited via will-change on hover
-                        prefersReducedMotion
-                            ? ""
-                            : "transition-transform duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:scale-[1.04]",
-                    ].join(" ")}
-                />
-            </div>
-
-            {/* ── Meta ───────────────────────────────────────────────────────── */}
-            <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-3">
-                <span className="text-[#D4AF37] font-medium">{post.category}</span>
-                {post.date && (
-                    <>
-                        <span>·</span>
-                        <span>{post.date}</span>
-                    </>
-                )}
-                {post.read && (
-                    <>
-                        <span>·</span>
-                        <span>{post.read}</span>
-                    </>
-                )}
-            </div>
-
-            {/* ── Title ──────────────────────────────────────────────────────── */}
-            <h2 className="font-serif text-2xl md:text-[1.65rem] leading-[1.3] text-foreground transition-colors duration-300 group-hover:text-foreground/80 balance mb-2">
-                {post.title}
-            </h2>
-
-            {/* ── Excerpt ────────────────────────────────────────────────────── */}
-            <p className="text-sm text-muted-foreground/90 font-light leading-relaxed">
-                {post.excerpt}
-            </p>
-
-            {/* ── CTA ────────────────────────────────────────────────────────── */}
-            <div className="mt-5 flex items-center">
-                <span className="text-xs uppercase tracking-[0.15em] text-foreground/80 border-b border-[#D4AF37]/30 pb-1 transition-colors duration-300 group-hover:border-[#D4AF37] group-hover:text-foreground">
-                    Read essay
-                </span>
-            </div>
-        </motion.div>
-    );
-
-    // Wrap in external link or internal Link — structure unchanged from original
-    return post.external ? (
-        <a
-            key={post.slug}
-            href={post.external}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block w-full max-w-xl"
-        >
-            {cardContent}
-        </a>
-    ) : (
-        <Link
-            key={post.slug}
-            to={`/blog/${post.slug}`}
-            className="block w-full max-w-xl"
-        >
-            {cardContent}
-        </Link>
-    );
-};
 
 // ─── Page component ───────────────────────────────────────────────────────────
 
@@ -441,24 +239,7 @@ const IPInsights = () => {
               Animation: simple whileInView fade-up, fires once.
               No scroll-position coupling, no parallax.
           ─────────────────────────────────────────────────────────────── */}
-                    <div className="w-full md:w-5/12 lg:w-[40%] md:sticky md:top-32 flex flex-col">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, amount: 0.2 }}
-                            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                            className="w-full aspect-[16/9] max-h-[450px] relative overflow-hidden rounded-xl bg-[#1A1A1A] shadow-[0_8px_30px_rgb(0,0,0,0.04)]"
-                        >
-                            <video
-                                src="/videos/insights.mp4"
-                                autoPlay
-                                muted
-                                loop
-                                playsInline
-                                className="absolute inset-0 w-full h-full object-cover opacity-90"
-                            />
-                        </motion.div>
-                    </div>
+
 
                     {/* ── Right: Journal cards ───────────────────────────────────────
               Each <JournalCard> is fully self-contained.
@@ -467,14 +248,122 @@ const IPInsights = () => {
               At 200 cards: 67 batches of 3, each batch staggers independently
               as the user scrolls to it. No global 200-card stagger.
           ─────────────────────────────────────────────────────────────── */}
-                    <div className="w-full md:w-7/12 lg:w-[60%] max-w-xl mx-auto md:mx-0">
-                        <div className="max-h-[78vh] overflow-y-auto pr-4 space-y-16 md:space-y-20 scrollbar-thin scrollbar-thumb-[#D4AF37]/30 scrollbar-track-transparent">
-                            {posts.map((post, globalIndex) => (
-                                <JournalCard
+
+                    <div className="relative max-w-6xl mx-auto space-y-24">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                            {posts.map((post, index) => (
+                                <motion.div
                                     key={post.slug}
-                                    post={post}
-                                    batchIndex={globalIndex % BATCH_SIZE}
-                                />
+                                    initial={{
+                                        opacity: 0,
+                                        y: 40,
+                                    }}
+                                    whileInView={{
+                                        opacity: 1,
+                                        y: 0,
+                                    }}
+                                    viewport={{
+                                        once: true,
+                                        amount: 0.2,
+                                    }}
+                                    transition={{
+                                        duration: 0.8,
+                                        delay: index * 0.08,
+                                        ease: [0.22, 1, 0.36, 1],
+                                    }}
+                                >
+                                    {post.external ? (
+                                        <a
+                                            href={post.external}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="group block h-full"
+                                        >
+                                            <div className="h-full bg-white/80 dark:bg-[#111]/80 backdrop-blur-md border border-black/5 dark:border-white/10 rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)] transition-all duration-500">
+
+                                                <div className="overflow-hidden">
+                                                    <img
+                                                        src={post.image}
+                                                        alt={post.title}
+                                                        className="w-full aspect-[16/9] object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                                                    />
+                                                </div>
+
+                                                <div className="p-8">
+                                                    <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] text-neutral-500 mb-4">
+                                                        <span className="text-[#D4AF37]">
+                                                            {post.category}
+                                                        </span>
+
+                                                        <span>•</span>
+                                                        <span>{post.date}</span>
+
+                                                        <span>•</span>
+                                                        <span>{post.read}</span>
+                                                    </div>
+
+                                                    <h2 className="font-serif text-3xl leading-[1.3] mb-4 text-[#1A1A1A] dark:text-white">
+                                                        {post.title}
+                                                    </h2>
+
+                                                    <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed font-light">
+                                                        {post.excerpt}
+                                                    </p>
+
+                                                    <div className="mt-6">
+                                                        <span className="text-xs uppercase tracking-[0.15em] border-b border-[#D4AF37]/30 pb-1">
+                                                            Read Essay
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    ) : (
+                                        <Link
+                                            to={`/blog/${post.slug}`}
+                                            className="group block h-full"
+                                        >
+                                            <div className="h-full bg-white/80 dark:bg-[#111]/80 backdrop-blur-md border border-black/5 dark:border-white/10 rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)] transition-all duration-500">
+
+                                                <div className="overflow-hidden">
+                                                    <img
+                                                        src={post.image}
+                                                        alt={post.title}
+                                                        className="w-full aspect-[16/9] object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                                                    />
+                                                </div>
+
+                                                <div className="p-8">
+                                                    <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] text-neutral-500 mb-4">
+                                                        <span className="text-[#D4AF37]">
+                                                            {post.category}
+                                                        </span>
+
+                                                        <span>•</span>
+                                                        <span>{post.date}</span>
+
+                                                        <span>•</span>
+                                                        <span>{post.read}</span>
+                                                    </div>
+
+                                                    <h2 className="font-serif text-3xl leading-[1.3] mb-4 text-[#1A1A1A] dark:text-white">
+                                                        {post.title}
+                                                    </h2>
+
+                                                    <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed font-light">
+                                                        {post.excerpt}
+                                                    </p>
+
+                                                    <div className="mt-6">
+                                                        <span className="text-xs uppercase tracking-[0.15em] border-b border-[#D4AF37]/30 pb-1">
+                                                            Read Essay
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    )}
+                                </motion.div>
                             ))}
                         </div>
                     </div>

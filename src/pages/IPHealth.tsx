@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import gsap from 'gsap';
 import SiteLayout from "@/components/SiteLayout";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ExternalLink } from "lucide-react";
 import Lenis from 'lenis';
 import {
     ArrowRight, EyeOff, FileText, Bookmark,
@@ -127,7 +128,7 @@ export default function IPHealth() {
                 onMouseLeave={reset}
                 animate={{ x: position.x, y: position.y }}
                 transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
-                className={`relative overflow-hidden group rounded-full border border-[#D4AF37]/30 flex items-center justify-center cursor-pointer transition-colors duration-500 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10 ${className}`}
+                className={`relative overflow-hidden group rounded-full border border-[#D4AF37]/30 flex items-center justify-center transition-colors duration-500 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10 ${className}`}
             >
                 <span className="relative z-10 flex items-center gap-2">{children}</span>
                 <div className="absolute inset-0 z-0 bg-gradient-to-r from-[#D4AF37]/0 via-[#D4AF37]/10 to-[#D4AF37]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
@@ -135,7 +136,17 @@ export default function IPHealth() {
         );
 
         if (href) {
-            return <a href={href} target="_blank" rel="noopener noreferrer" className="block w-fit">{content}</a>;
+            return (
+                <motion.a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-fit cursor-pointer"
+                    whileTap={{ scale: 0.98 }}
+                >
+                    {content}
+                </motion.a>
+            );
         }
         return content;
     };
@@ -299,9 +310,7 @@ export default function IPHealth() {
                             <p className="text-[#0D2342]/60 text-lg font-light mb-8">
                                 We don't just file paperwork. We build defensible moats around your most valuable assets, ensuring long-term commercial dominance.
                             </p>
-                            <MagneticButton className="px-8 py-4 text-xs tracking-[0.2em] uppercase font-semibold text-[#0D2342] border-[#0D2342]/20 hover:border-[#D4AF37]">
-                                Explore Methodology
-                            </MagneticButton>
+
                         </div>
 
                         {/* Scrolling Right Side */}
@@ -398,6 +407,7 @@ export default function IPHealth() {
                                 className="px-14 py-5 bg-[#0D2342] text-white text-sm uppercase tracking-[0.18em] font-bold shadow-[0_15px_35px_rgba(13,35,66,0.18)] hover:shadow-[0_20px_45px_rgba(13,35,66,0.28)]"
                             >
                                 Start My Diagnostic
+                                <ExternalLink className="w-4 h-4 opacity-70" />
                                 <ChevronRight className="w-5 h-5 ml-2" />
                             </MagneticButton>
                         </div>
