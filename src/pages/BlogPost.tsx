@@ -6,7 +6,6 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion, useScroll, useTransform, useReducedMotion, AnimatePresence } from "framer-motion";
 import SiteLayout from "@/components/SiteLayout";
 import { posts } from "@/pages/posts";
-
 // ─── Easing ───────────────────────────────────────────────────────────────────
 const EASE_EXPO = [0.16, 1, 0.3, 1] as const;
 

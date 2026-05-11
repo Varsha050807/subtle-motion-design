@@ -104,7 +104,7 @@ tracking-wide border-b border-white/10">
           <Route path="/services" element={<Services />} />
           <Route path="/about" element={<About />} />
           <Route path="/team" element={<Team />} />
-          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog" element={<IPInsights />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/ip-health" element={<IPHealth />} />
