@@ -393,8 +393,12 @@ export default function Index() {
                 </p>
 
                 <p className="text-base md:text-lg text-[#5E748E] leading-relaxed max-w-3xl">
+
                   We do not merely advise. We illuminate, harvest, and build intellectual property portfolios that endure, compete, and create lasting
                   wealth for the enterprises bold enough to lead.
+
+                  We do not merely advise. We illuminate, harvest, and build—crafting intellectual property portfolios that endure, compete, and create lasting wealth for the enterprises bold enough to lead.
+
                 </p>
               </motion.div>
 
@@ -418,7 +422,7 @@ export default function Index() {
                   <HoverHeading>
 
 
-                    <h3 className="text-6xl md:text-[9rem] font-serif mb-8 text-[#ECE8DF]">Patents</h3>
+
 
                   </HoverHeading>
                   <p className="text-lg md:text-3xl font-light text-[#5E748E] max-w-3xl mx-auto leading-relaxed mt-12">

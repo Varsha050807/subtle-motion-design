@@ -157,24 +157,19 @@ export default function IPHealth() {
                     {children}
                 </span>
 
-                <div className="absolute inset-0 z-0 bg-gradient-to-r from-[#D4AF37]/0 via-[#D4AF37]/10 to-[#D4AF37]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
-            </motion.div>
+                <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-r from-[#D4AF37]/0 via-[#D4AF37]/10 to-[#D4AF37]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />            </motion.div>
         );
 
         if (href) {
             return (
-                <motion.a
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <div
+                    onClick={() => window.open(href, "_blank")}
                     className="block w-fit"
-                    whileTap={{ scale: 0.98 }}
                 >
                     {content}
-                </motion.a>
+                </div>
             );
         }
-
         return content;
     };
 
@@ -429,14 +424,14 @@ export default function IPHealth() {
                             <p className="text-[#0D2342]/60 mb-12 max-w-lg mx-auto text-xl leading-relaxed font-light">
                                 Strictly limited to <strong className="text-[#D4AF37] font-semibold">4 curated slots weekly</strong>. Reserved for serious researchers, engineers, startups, and MSMEs.
                             </p>
-                            <MagneticButton
-                                href="https://forms.gle/NbD357jAStqUCyTx9"
-                                className="px-14 py-5 bg-[#0D2342] text-white text-sm uppercase tracking-[0.18em] font-bold shadow-[0_15px_35px_rgba(13,35,66,0.18)] hover:shadow-[0_20px_45px_rgba(13,35,66,0.28)]"
+                            <button
+                                onClick={() => window.open("https://forms.gle/NbD357jAStqUCyTx9", "_blank")}
+                                className="px-14 py-5 bg-[#0D2342] text-white text-sm uppercase tracking-[0.18em] font-bold shadow-[0_15px_35px_rgba(13,35,66,0.18)] hover:shadow-[0_20px_45px_rgba(13,35,66,0.28)] rounded-full flex items-center gap-2"
                             >
                                 Start My Diagnostic
                                 <ExternalLink className="w-4 h-4 opacity-70" />
                                 <ChevronRight className="w-5 h-5 ml-2" />
-                            </MagneticButton>
+                            </button>
                         </div>
                     </motion.div>
                 </section>

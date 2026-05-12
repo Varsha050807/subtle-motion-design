@@ -248,7 +248,7 @@ const IPInsights = () => {
       ══════════════════════════════════════════════════════ */}
             <section
                 ref={heroRef}
-                className="relative min-h-[88vh] flex flex-col items-center justify-center overflow-hidden bg-[#0a1520] pt-20"
+                className="relative min-h-[88vh] flex flex-col items-center justify-center overflow-hidden bg-[#27445D] pt-20"
             >
                 {/* Ambient background orbs */}
                 <AmbientOrb className="w-[600px] h-[600px] bg-[#27445D]/60 top-[-10%] left-[-8%]" />
@@ -282,9 +282,9 @@ const IPInsights = () => {
                     <h1 className="font-serif text-[clamp(3.2rem,10vw,8rem)] leading-[0.95] tracking-tight mb-8">
                         <div className="overflow-hidden">
                             <span className="text-[#8BA4BD] font-light italic">
-                                <HeroWord delay={0.2}>Considered</HeroWord>
+                                <HeroWord delay={0.2}>Taut </HeroWord>
                                 {" "}
-                                <HeroWord delay={0.32}>writing.</HeroWord>
+                                <HeroWord delay={0.32}> diction.</HeroWord>
                             </span>
                         </div>
                         <div className="overflow-hidden mt-2">
@@ -294,7 +294,7 @@ const IPInsights = () => {
                                 animate={{ y: "0%", opacity: 1 }}
                                 transition={{ duration: 1.1, delay: 0.52, ease: EASE_EXPO }}
                             >
-                                Enduring ideas.
+                                Ideas that last.
                             </motion.span>
                         </div>
                     </h1>
@@ -375,7 +375,7 @@ const IPInsights = () => {
                         className="mt-24 text-center"
                     >
                         <div className="w-px h-12 bg-gradient-to-b from-[#D4AF37]/30 to-transparent mx-auto mb-6" />
-                        <p className="text-[10px] tracking-[0.25em] uppercase text-[#8BA4BD]/30">
+                        <p className="text-[10px] tracking-[0.25em] uppercase text-[#0f1e2b]/55">
                             All essays © {new Date().getFullYear()} · All rights reserved
                         </p>
                     </motion.div>

@@ -90,7 +90,7 @@ function AboutHero() {
         </p>
 
         <h1 className="text-5xl md:text-7xl font-serif leading-[1.05]">
-          Never Forsaken. Eternally Free.
+          Unforsaken. Unbound.
         </h1>
 
         <p className="mt-6 text-[#ECE8DF]/70 max-w-2xl mx-auto">
