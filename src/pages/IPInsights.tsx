@@ -1,7 +1,7 @@
 // IPInsights.tsx
 // Place at: src/pages/IPInsights.tsx
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import SiteLayout from "@/components/SiteLayout";
@@ -239,7 +239,29 @@ const IPInsights = () => {
     const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
     const heroOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
-    const [featured, ...rest] = posts;
+    const [searchQuery, setSearchQuery] = useState("");
+    const [activeCategory, setActiveCategory] = useState("All");
+
+    const categories = [
+        "All",
+        ...new Set(posts.map((post) => post.category)),
+    ];
+
+    const filteredPosts = posts.filter((post) => {
+        const matchesSearch = `${post.title} ${post.excerpt} ${post.category}`
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase());
+
+        const matchesCategory =
+            activeCategory === "All" || post.category === activeCategory;
+
+        return matchesSearch && matchesCategory;
+    });
+
+    const featured =
+        filteredPosts.length > 0 ? filteredPosts[0] : posts[0];
+
+    const rest = filteredPosts.slice(1);
 
     return (
         <SiteLayout>
@@ -315,9 +337,9 @@ const IPInsights = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1.2, duration: 0.8 }}
-                        className="mt-10 text-[10px] tracking-[0.25em] uppercase text-[#8BA4BD]/35"
+                        className="mt-10 text-[10px] tracking-[0.25em] uppercase text-[#ECE8DF]/60"
                     >
-                        {posts.length} essays · Vol. I
+
                     </motion.p>
                 </motion.div>
 
@@ -348,12 +370,126 @@ const IPInsights = () => {
                         transition={{ duration: 0.8, ease: EASE_EXPO }}
                         className="flex items-center gap-4 mb-14"
                     >
-                        <span className="w-8 h-px bg-[#D4AF37]/60" />
-                        <span className="text-[10px] tracking-[0.3em] uppercase text-[#D4AF37]/70">
-                            The Journal
-                        </span>
-                    </motion.div>
 
+
+                    </motion.div>
+                    {/* Floating Search Bar */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.9, ease: EASE_EXPO }}
+                        className="-mt-16 md:-mt-20 mb-20 relative z-20"
+                    >
+                        <div className="max-w-5xl mx-auto">
+                            <div
+                                className="
+                group
+                relative
+                flex
+                items-center
+                overflow-hidden
+                rounded-[28px]
+                border border-[#D4AF37]/25
+                bg-white/90
+                backdrop-blur-xl
+                shadow-[0_20px_60px_rgba(15,30,43,0.08)]
+                transition-all
+                duration-500
+                hover:shadow-[0_25px_80px_rgba(15,30,43,0.12)]
+            "
+                            >
+                                {/* Search Icon */}
+                                <div className="pl-7 text-[#C6A55C]">
+                                    <svg
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                    >
+                                        <path
+                                            d="M21 21L16.65 16.65M11 18C14.866 18 18 14.866 18 11C18 7.13401 14.866 4 11 4C7.13401 4 4 7.13401 4 11C4 14.866 7.13401 18 11 18Z"
+                                            stroke="currentColor"
+                                            strokeWidth="1.7"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                </div>
+
+                                {/* Input */}
+                                <input
+                                    type="text"
+                                    placeholder="Search essays by title, topic or keyword..."
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    className="
+                    flex-1
+                    bg-transparent
+                    px-5
+                    py-7
+                    text-[15px]
+                    text-[#24384C]
+                    placeholder:text-[#24384C]/45
+                    outline-none
+                    border-none
+                "
+                                />
+
+                                {/* Divider */}
+                                <div className="hidden md:block w-px h-10 bg-[#24384C]/10" />
+
+                                {/* Search Text */}
+                                <button
+                                    className="
+                    px-8
+                    md:px-10
+                    text-[12px]
+                    tracking-[0.28em]
+                    uppercase
+                    text-[#C6A55C]
+                    font-medium
+                    transition-all
+                    duration-300
+                    group-hover:tracking-[0.32em]
+                "
+                                >
+                                    Search
+                                </button>
+                            </div>
+                        </div>
+                    </motion.div>
+                    {/* Categories */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, ease: EASE_EXPO }}
+                        className="flex flex-wrap gap-3 mb-12"
+                    >
+                        {categories.map((category) => {
+                            const isActive = activeCategory === category;
+
+                            return (
+                                <button
+                                    key={category}
+                                    onClick={() => setActiveCategory(category)}
+                                    className={`
+                    px-5 py-2.5 rounded-full
+                    text-[11px] uppercase tracking-[0.22em]
+                    transition-all duration-300
+                    border
+                    ${isActive
+                                            ? "bg-[#24384C] text-[#D4AF37] border-[#D4AF37]/40 shadow-lg"
+                                            : "bg-white/70 text-[#24384C]/70 border-[#24384C]/10 hover:border-[#D4AF37]/30 hover:text-[#24384C]"
+                                        }
+                `}
+                                >
+                                    {category}
+                                </button>
+                            );
+                        })}
+                    </motion.div>
                     {/* Featured post */}
                     <FeaturedCard post={featured} />
 
@@ -365,23 +501,30 @@ const IPInsights = () => {
                             <JournalCard key={post.slug} post={post} index={i} />
                         ))}
                     </div>
-
-                    {/* Footer note */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: 0.3 }}
-                        className="mt-24 text-center"
-                    >
-                        <div className="w-px h-12 bg-gradient-to-b from-[#D4AF37]/30 to-transparent mx-auto mb-6" />
-                        <p className="text-[10px] tracking-[0.25em] uppercase text-[#0f1e2b]/55">
-                            All essays © {new Date().getFullYear()} · All rights reserved
-                        </p>
-                    </motion.div>
+                    {filteredPosts.length === 0 && (
+                        <div className="text-center py-20">
+                            <p className="text-sm tracking-[0.15em] uppercase text-[#0f1e2b]/40">
+                                No essays found
+                            </p>
+                        </div>
+                    )}
                 </div>
+                {/* Footer note */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, delay: 0.3 }}
+                    className="mt-24 text-center"
+                >
+                    <div className="w-px h-12 bg-gradient-to-b from-[#D4AF37]/30 to-transparent mx-auto mb-6" />
+                    <p className="text-[10px] tracking-[0.25em] uppercase text-[#0f1e2b]/55">
+                        All essays © {new Date().getFullYear()} · All rights reserved
+                    </p>
+                </motion.div>
+
             </section>
-        </SiteLayout>
+        </SiteLayout >
     );
 };
 
