@@ -393,8 +393,7 @@ export default function Index() {
                 </p>
 
                 <p className="text-base md:text-lg text-[#5E748E] leading-relaxed max-w-3xl">
-                  We do not merely advise. We illuminate, harvest, and build—engineering
-                  intellectual property portfolios that endure, compete, and create lasting
+                  We do not merely advise. We illuminate, harvest, and build intellectual property portfolios that endure, compete, and create lasting
                   wealth for the enterprises bold enough to lead.
                 </p>
               </motion.div>
