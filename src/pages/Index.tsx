@@ -420,6 +420,9 @@ export default function Index() {
               <div className="service-panel h-screen w-full flex items-center justify-center relative shrink-0">
                 <div className="max-w-5xl px-8 md:px-0 text-center relative z-10">
                   <HoverHeading>
+                    <h3 className="text-6xl md:text-[9rem] font-serif mb-8 text-[#ECE8DF]">
+                      Patents
+                    </h3>
 
 
 

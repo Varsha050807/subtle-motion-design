@@ -29,8 +29,8 @@ const SERVICE_CATEGORIES = [
           "Design defines perception. We secure protection for the visual aspects of products, including shape, configuration, and ornamentation, managing filings, examinations, oppositions, renewals, and enforcement, ensuring your designs remain exclusively yours across their full lifecycle of commercial use.", image: "https://www.studiored.com/wp-content/uploads/2021/07/industrial-design-companies-hero.webp?x83661"
       },
       {
-        n: "05", title: "Patent Illustration", body: "Docketing, renewals, and administrative IP support.", detailedBody:
-          "Precision matters in every figure. We create technically accurate, jurisdiction-compliant patent drawings across mechanical, chemical, electrical, design, and software domains, delivering clear, examiner-ready visuals that strengthen specifications, support claims, and enhance the overall quality of your patent filings.", image: "https://t3.ftcdn.net/jpg/01/07/15/58/360_F_107155820_NCUA4CtCkIDXXHnKAlWVzUvRjfMe0k5D.jpg"
+        n: "05", title: "Patent Illustration", body: "Technical drawings, patent figures, and invention documentation.", detailedBody:
+          "Precision matters in every figure. We create technically accurate, jurisdiction-compliant patent drawings across mechanical, chemical, electrical, design, and software domains, delivering clear, examiner-ready visuals that strengthen specifications, support claims, and enhance the overall quality of your patent filings.", image: "https://images.openai.com/static-rsc-4/D9cEOAkDskR5upmnGEDWjly7Ggcw5vKXWYWc4amBA3tSlHosfYa2pmXtFtvG7f_DGzTWrEhrNzWRoXDdQvBn_TqOsLvRKK6au5tPav85uafVz-mTXzHSksjgZa8hcWTf0suWJzvVXB_5eGfyHlLeJIOEXT-PwC0_Ap0GV4WPZ3SDeGp3gYcCwA1tRUEvltVC?purpose=fullsize"
       },
     ]
   },
