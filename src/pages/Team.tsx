@@ -15,7 +15,7 @@ const team = [
     },
     {
         name: "Mr. Basavaraj S Manur",
-        role: "Advocate & IP Consultant",
+        role: "Advocate & Trademark Attorney",
         qualifications: "",
         experience: "36+ years of experience",
     },
