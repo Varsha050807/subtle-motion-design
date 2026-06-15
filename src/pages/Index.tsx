@@ -486,6 +486,125 @@ export default function Index() {
               </motion.p>
             </div>
           </section>
+          {/* TESTIMONIALS - ELITE VERSION */}
+          <section className="min-h-screen bg-[#F7F5EF] flex items-center justify-center py-40 px-8 md:px-24 relative z-20 overflow-hidden">
+            <div className="max-w-7xl mx-auto text-center">
+
+              {/* HEADER */}
+              <motion.h2
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1 }}
+                className="text-4xl md:text-7xl font-serif text-[#0D2342]"
+              >
+                Trust, Proven in Practice
+              </motion.h2>
+
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="text-[#5E748E] max-w-3xl mx-auto mt-6 mb-20 text-lg"
+              >
+                Every engagement reflects precision, clarity, and commitment to protecting innovation.
+              </motion.p>
+
+              {/* FLOATING BACKGROUND ELEMENTS */}
+              <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-20 left-10 text-[10rem] font-serif text-[#0D2342]/5">
+                  IP
+                </div>
+                <div className="absolute bottom-10 right-10 text-[12rem] font-serif text-[#5E748E]/5 italic">
+                  Trust
+                </div>
+              </div>
+
+              {/* TESTIMONIAL TRACK (AUTO FLOW FEEL) */}
+              <div className="relative max-w-5xl mx-auto">
+
+                <div className="grid md:grid-cols-2 gap-10">
+
+                  {[
+                    {
+                      text: "This patent was our first innovation and the guidance made the entire process extremely clear and structured.",
+                      name: "Vinod H R",
+                      role: "Embedded Engineer"
+                    },
+                    {
+                      text: "From filing to grant, the process was handled with exceptional clarity and professionalism.",
+                      name: "Yashwanth B R",
+                      role: "Independent Researcher"
+                    },
+                    {
+                      text: "They identified risks that others missed, which helped us avoid critical mistakes in filing.",
+                      name: "Priyanka Rao",
+                      role: "Co-Founder"
+                    },
+                    {
+                      text: "Very responsive and practical approach. The prior art search was detailed and insightful.",
+                      name: "Amit Verma",
+                      role: "Engineering Manager"
+                    }
+                  ].map((item, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 80, scale: 0.95 }}
+                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.9, delay: i * 0.15 }}
+                      whileHover={{
+                        y: -10,
+                        scale: 1.03,
+                        transition: { duration: 0.3 }
+                      }}
+                      className="relative group bg-white/60 backdrop-blur-xl border border-white/40 shadow-2xl rounded-3xl p-10 text-left overflow-hidden"
+                    >
+
+                      {/* GOLD ACCENT GLOW */}
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-[#D4AF37]/10 via-transparent to-transparent" />
+
+                      {/* QUOTE MARK */}
+                      <div className="text-[#D4AF37] text-6xl font-serif mb-4 opacity-40">
+                        “
+                      </div>
+
+                      {/* TEXT */}
+                      <p className="text-[#5E748E] text-lg leading-relaxed mb-8 relative z-10">
+                        {item.text}
+                      </p>
+
+                      {/* FOOTER */}
+                      <div className="flex items-center justify-between relative z-10">
+
+                        <div>
+                          <h4 className="text-[#0D2342] font-semibold text-lg">
+                            {item.name}
+                          </h4>
+                          <span className="text-sm text-[#5E748E]">
+                            {item.role}
+                          </span>
+                        </div>
+
+                        {/* subtle trust indicator */}
+                        <div className="text-xs text-[#D4AF37] font-medium tracking-wider">
+                          VERIFIED CLIENT
+                        </div>
+
+                      </div>
+
+                      {/* bottom accent line */}
+                      <div className="mt-6 h-[2px] w-20 bg-gradient-to-r from-[#D4AF37] to-transparent" />
+
+                    </motion.div>
+                  ))}
+
+                </div>
+              </div>
+
+            </div>
+          </section>
           {/* TRANSITION INTO CTA */}
           <section
             className="h-[28vh] relative z-20 pointer-events-none"

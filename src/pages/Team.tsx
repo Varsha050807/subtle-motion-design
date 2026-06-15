@@ -37,6 +37,12 @@ const team = [
         qualifications: "MBA (Finance & HR)",
         experience: "5+ years of experience",
     },
+    {
+        name: "Mr. Basavaraj S Manur",
+        role: "Advocate & Trademark Attorney",
+        qualifications: "",
+        experience: "36+ years of experience",
+    },
 ];
 
 const Team = () => {

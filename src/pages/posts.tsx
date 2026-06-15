@@ -2,30 +2,30 @@
 // Place this file at: src/data/posts.ts
 
 export interface Post {
-    slug: string;
-    title: string;
-    excerpt: string;
-    content: string; // HTML string rendered in BlogPost
-    image: string;
-    date: string;
-    read: string;
-    category: string;
-    external?: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string; // HTML string rendered in BlogPost
+  image: string;
+  date: string;
+  read: string;
+  category: string;
+  external?: string;
 }
 
 export const posts: Post[] = [
-    {
-        slug: "startup-spent-x-lakhs-patents",
-        title: "Startup spent ₹X lakhs on patents — still lost to a copycat. What broke?",
-        excerpt:
-            "A practical look at where patent strategy fails: filing without enforceability, weak claim architecture, and missing commercial alignment.",
-        image: "/images/image1.png",
-        date: "May 2026",
-        read: "5 min read",
-        category: "Patent Strategy",
-        external:
-            "https://www.linkedin.com/pulse/startup-spent-x-lakhs-patents-still-lost-copycat-what-b-manur-phd--2ivfc/?trackingId=h1huJjO0R02ZP%2F4pCk7UUg%3D%3D",
-        content: `
+  {
+    slug: "startup-spent-x-lakhs-patents",
+    title: "Startup spent ₹X lakhs on patents — still lost to a copycat. What broke?",
+    excerpt:
+      "A practical look at where patent strategy fails: filing without enforceability, weak claim architecture, and missing commercial alignment.",
+    image: "/images/image1.png",
+    date: "May 2026",
+    read: "5 min read",
+    category: "Patent Strategy",
+    external:
+      "https://www.linkedin.com/pulse/startup-spent-x-lakhs-patents-still-lost-copycat-what-b-manur-phd--2ivfc/?trackingId=h1huJjO0R02ZP%2F4pCk7UUg%3D%3D",
+    content: `
       <p class="lead">Every year, hundreds of Indian startups invest significant capital in patents — only to find those patents fail at the moment they matter most: enforcement.</p>
 
       <p>The story is almost always the same. A founder, rightfully proud of a genuine innovation, engages a patent attorney, pays the filing fees, waits through examination, and eventually receives a granted patent. Then a competitor launches a nearly identical product. The founder reaches for their patent — and discovers it does not protect what they thought it did.</p>
@@ -62,19 +62,19 @@ export const posts: Post[] = [
 
       <p>The cost of doing this correctly is modest relative to the filing budget most startups already spend. The cost of not doing it is the story at the beginning of this essay.</p>
     `,
-    },
-    {
-        slug: "your-research-probably-patentable",
-        title: "Your research is probably patentable. Here's why you never filed.",
-        excerpt:
-            "Many valuable inventions never become protected assets — not because they lack novelty, but because they were never identified, captured, or strategically filed.",
-        image: "/images/image2.png",
-        date: "May 2026",
-        read: "4 min read",
-        category: "Research & Patents",
-        external:
-            "https://www.linkedin.com/pulse/your-research-probably-patentable-here-why-you-never-filed-b-manur-8ncmc/?trackingId=vtaDwHxbSqS3yPY78wM8fg%3D%3D",
-        content: `
+  },
+  {
+    slug: "your-research-probably-patentable",
+    title: "Your research is probably patentable. Here's why you never filed.",
+    excerpt:
+      "Many valuable inventions never become protected assets — not because they lack novelty, but because they were never identified, captured, or strategically filed.",
+    image: "/images/image2.png",
+    date: "May 2026",
+    read: "4 min read",
+    category: "Research & Patents",
+    external:
+      "https://www.linkedin.com/pulse/your-research-probably-patentable-here-why-you-never-filed-b-manur-8ncmc/?trackingId=vtaDwHxbSqS3yPY78wM8fg%3D%3D",
+    content: `
       <p class="lead">Across research institutions, engineering teams, and product organisations, there is a persistent and costly phenomenon: genuinely novel work that never becomes a patent, not because it is unpatentable, but because no one ever asked the right questions at the right time.</p>
 
       <p>The result is a double loss. The organisation forgoes protection it could have had. And the work — often the product of months or years of effort — enters the public domain by default, freely available to any competitor who reads the published paper or studies the released product.</p>
@@ -99,19 +99,19 @@ export const posts: Post[] = [
 
       <p>The organisations that build IP portfolios of genuine value are rarely the ones with the most innovations. They are the ones with the most systematic approach to identifying and capturing the innovations they already have.</p>
     `,
-    },
-    {
-        slug: "why-filing-too-early",
-        title: "Why filing a patent too early is just as dangerous as filing too late",
-        excerpt:
-            "Patent timing is strategy. File too early and protection may be weak; file too late and novelty may already be lost.",
-        image: "/images/image3.png",
-        date: "March 2026",
-        read: "5 min read",
-        category: "Patent Timing",
-        external:
-            "https://www.linkedin.com/pulse/why-filing-patent-too-early-just-dangerous-late-b-manur-phd--s5s3c/?trackingId=TsKRKX%2FMQb%2B8k%2BPA4A8C8g%3D%3D",
-        content: `
+  },
+  {
+    slug: "why-filing-too-early",
+    title: "Why filing a patent too early is just as dangerous as filing too late",
+    excerpt:
+      "Patent timing is strategy. File too early and protection may be weak; file too late and novelty may already be lost.",
+    image: "/images/image3.png",
+    date: "March 2026",
+    read: "5 min read",
+    category: "Patent Timing",
+    external:
+      "https://www.linkedin.com/pulse/why-filing-patent-too-early-just-dangerous-late-b-manur-phd--s5s3c/?trackingId=TsKRKX%2FMQb%2B8k%2BPA4A8C8g%3D%3D",
+    content: `
       <p class="lead">Patent strategy is usually discussed as a race — file quickly, before the novelty window closes, before a competitor files first. This framing is not wrong, but it is incomplete. Filing too early carries its own significant risks, and founders who understand only one side of the timing equation often make expensive mistakes.</p>
 
       <h2>The Risk of Filing Too Early</h2>
@@ -140,19 +140,19 @@ export const posts: Post[] = [
 
       <p>Timing is ultimately a judgment that requires understanding the technology trajectory, the competitive landscape, and the publication calendar simultaneously. It is not a legal formality. It is one of the highest-value decisions in IP strategy.</p>
     `,
-    },
-    {
-        slug: "developer-owns-your-invention",
-        title: "You are about to lose your patent rights because your developer owns your invention",
-        excerpt:
-            "Many founders assume payment equals ownership. In IP law, without assignment agreements, the creator may legally own what your company built.",
-        image: "/images/image4.png",
-        date: "March 2026",
-        read: "4 min read",
-        category: "IP Ownership",
-        external:
-            "https://www.linkedin.com/pulse/you-lose-your-patent-rights-because-developer-owns-b-manur-phd--rwgrc/?trackingId=lMIlYrW4RNCC50I4nQQAtQ%3D%3D",
-        content: `
+  },
+  {
+    slug: "developer-owns-your-invention",
+    title: "You are about to lose your patent rights because your developer owns your invention",
+    excerpt:
+      "Many founders assume payment equals ownership. In IP law, without assignment agreements, the creator may legally own what your company built.",
+    image: "/images/image4.png",
+    date: "March 2026",
+    read: "4 min read",
+    category: "IP Ownership",
+    external:
+      "https://www.linkedin.com/pulse/you-lose-your-patent-rights-because-developer-owns-b-manur-phd--rwgrc/?trackingId=lMIlYrW4RNCC50I4nQQAtQ%3D%3D",
+    content: `
       <p class="lead">It is one of the most common and most avoidable errors in startup IP: a founder engages a developer to build a product, pays the invoices, ships the software — and then discovers, at the worst possible moment, that the developer may own the invention.</p>
 
       <h2>Why Payment Is Not Assignment</h2>
@@ -179,19 +179,19 @@ export const posts: Post[] = [
 
       <p>The cost of the agreement at the outset is a fraction of the cost of resolving the dispute afterward. This is one area where preventive legal work has an unambiguous and immediate return.</p>
     `,
-    },
-    {
-        slug: "should-i-file-a-patent",
-        title: `"Should I file a patent?" — Why you're asking the wrong question`,
-        excerpt:
-            "The better question is not whether to file, but what exactly is protectable, when to file, and how to structure protection strategically.",
-        image: "/images/image5.png",
-        date: "March 2026",
-        read: "4 min read",
-        category: "Patent Filing",
-        external:
-            "https://www.linkedin.com/pulse/you-have-invented-something-asking-should-i-file-b-manur-phd--glzlc/?trackingId=lMIlYrW4RNCC50I4nQQAtQ%3D%3D",
-        content: `
+  },
+  {
+    slug: "should-i-file-a-patent",
+    title: `"Should I file a patent?" — Why you're asking the wrong question`,
+    excerpt:
+      "The better question is not whether to file, but what exactly is protectable, when to file, and how to structure protection strategically.",
+    image: "/images/image5.png",
+    date: "March 2026",
+    read: "4 min read",
+    category: "Patent Filing",
+    external:
+      "https://www.linkedin.com/pulse/you-have-invented-something-asking-should-i-file-b-manur-phd--glzlc/?trackingId=lMIlYrW4RNCC50I4nQQAtQ%3D%3D",
+    content: `
       <p class="lead">The question arrives in nearly every early-stage IP conversation: "Should I file a patent?" It is an understandable question, but it is not the right one — and answering it directly, without interrogating the framing, often leads to poor decisions.</p>
 
       <h2>The Question Behind the Question</h2>
@@ -212,16 +212,16 @@ export const posts: Post[] = [
 
       <p>Patent strategy is not a binary decision between filing and not filing. It is a question of what to file, when to file it, and how to structure the claims to create genuine commercial leverage. That question deserves a more considered answer than a simple yes or no.</p>
     `,
-    },
-    {
-        slug: "drafting-as-a-discipline",
-        title: "Drafting as a discipline: why the patent specification is a literary form",
-        excerpt: "A claim is read more often by adversaries than by examiners. Compose accordingly.",
-        image: "/images/image6.png",
-        date: "April 2026",
-        read: "8 min read",
-        category: "Patents",
-        content: `
+  },
+  {
+    slug: "drafting-as-a-discipline",
+    title: "Drafting as a discipline: why the patent specification is a literary form",
+    excerpt: "A claim is read more often by adversaries than by examiners. Compose accordingly.",
+    image: "/images/image6.png",
+    date: "April 2026",
+    read: "8 min read",
+    category: "Patents",
+    content: `
       <p class="lead">There is a reason the great patent attorneys of the twentieth century spoke of their work in terms borrowed from architecture and literature. A patent specification is not a technical report. It is a constructed document — one that must simultaneously satisfy an examiner, survive adversarial review, and hold its meaning across decades of technological change.</p>
 
       <h2>The Temporal Problem</h2>
@@ -248,16 +248,16 @@ export const posts: Post[] = [
 
       <p>This is not paranoia. It is realism about how patent documents are actually used. The examiner is a gatekeeper; the adversary is the real audience. Compose accordingly.</p>
     `,
-    },
-    {
-        slug: "the-quiet-trademark",
-        title: "The quiet trademark: brand protection that begins before the launch",
-        excerpt: "Clearance done early is clearance done once. A short guide for founders.",
-        image: "/images/image7.png",
-        date: "March 2026",
-        read: "6 min read",
-        category: "Trademarks",
-        content: `
+  },
+  {
+    slug: "the-quiet-trademark",
+    title: "The quiet trademark: brand protection that begins before the launch",
+    excerpt: "Clearance done early is clearance done once. A short guide for founders.",
+    image: "/images/image7.png",
+    date: "March 2026",
+    read: "6 min read",
+    category: "Trademarks",
+    content: `
       <p class="lead">Trademark problems have an unfortunate tendency to surface at the worst possible moment — just before a product launch, during a fundraising process, or at the point of an acquisition. In almost every case, the problem could have been identified and resolved months or years earlier, at a fraction of the eventual cost.</p>
 
       <h2>What Clearance Actually Means</h2>
@@ -284,16 +284,16 @@ export const posts: Post[] = [
 
       <p>Clearance done early is clearance done once. Remediation done late is rarely done cleanly.</p>
     `,
-    },
-    {
-        slug: "litigation-as-last-recourse",
-        title: "Litigation as last recourse: the case for considered restraint",
-        excerpt: "The most successful enforcement strategies rarely see a courtroom. Here is why.",
-        image: "/images/image8.png",
-        date: "February 2026",
-        read: "10 min read",
-        category: "Disputes",
-        content: `
+  },
+  {
+    slug: "litigation-as-last-recourse",
+    title: "Litigation as last recourse: the case for considered restraint",
+    excerpt: "The most successful enforcement strategies rarely see a courtroom. Here is why.",
+    image: "/images/image8.png",
+    date: "February 2026",
+    read: "10 min read",
+    category: "Disputes",
+    content: `
       <p class="lead">Intellectual property litigation is expensive, slow, uncertain, and public. It consumes management attention, strains client relationships, and — in a meaningful fraction of cases — produces outcomes that neither party anticipated when the dispute began. The most successful IP enforcement strategies are those that achieve their objectives without litigation.</p>
 
       <h2>The Enforcement Spectrum</h2>
@@ -322,16 +322,16 @@ export const posts: Post[] = [
 
       <p>These questions do not always counsel restraint. Sometimes they counsel aggressive and immediate action. But they counsel it for reasons, not by reflex.</p>
     `,
-    },
-    {
-        slug: "portfolio-as-inheritance",
-        title: "Portfolios as inheritance: building IP that outlives the team that built it",
-        excerpt: "Documentation is the rarest virtue in IP management — and the most valuable.",
-        image: "/images/image9.png",
-        date: "January 2026",
-        read: "7 min read",
-        category: "Strategy",
-        content: `
+  },
+  {
+    slug: "portfolio-as-inheritance",
+    title: "Portfolios as inheritance: building IP that outlives the team that built it",
+    excerpt: "Documentation is the rarest virtue in IP management — and the most valuable.",
+    image: "/images/image9.png",
+    date: "January 2026",
+    read: "7 min read",
+    category: "Strategy",
+    content: `
       <p class="lead">A patent portfolio is a long-duration asset. The patents filed today will, if granted and maintained, remain in force for twenty years. The people who built the technology, drafted the applications, and understood the strategic rationale may be gone within five.</p>
 
       <p>This creates an inheritance problem that most organisations do not address until it becomes acute — usually when a patent needs to be enforced, licensed, or evaluated in an acquisition, and no one can explain why certain claims were drafted as they were, or what commercial problem they were designed to address.</p>
@@ -362,5 +362,78 @@ export const posts: Post[] = [
 
       <p>The IP portfolio you build today is an inheritance for the organisation's future leadership. Like any inheritance, its value depends not just on what it contains but on how well its contents are documented, organised, and understood. The rarest virtue in IP management is not legal sophistication. It is the discipline to create and maintain the records that make sophistication transmissible.</p>
     `,
-    },
+  },
+  {
+    slug: "ai-intellectual-property-billions-at-stake",
+    title: "AI & Intellectual Property: Why a Simple Prompt Could Put Billions at Stake",
+    excerpt:
+      "As generative AI transforms innovation, a single prompt may trigger questions of authorship, ownership, infringement, and commercial value worth billions.",
+    image: "/images/image10.png",
+    date: "June 2026",
+    read: "6 min read",
+    category: "AI & IP",
+    external:
+      "https://www.linkedin.com/pulse/ai-intellectual-property-why-simple-prompt-could-put-b-manur-phd--hz7nc/",
+    content: `
+      <p class="lead">Artificial intelligence has fundamentally altered how creative and technical work is produced. What once required teams of designers, engineers, writers, and researchers can now be initiated through a simple prompt. The legal question is no longer whether AI can create value, but who owns that value.</p>
+
+      <h2>The Ownership Question</h2>
+
+      <p>Traditional intellectual property systems were designed around human creators. Patent law assumes inventors are natural persons. Copyright law assumes authorship originates from human creativity. Generative AI challenges both assumptions.</p>
+
+      <p>When an AI system produces content, code, designs, or technical solutions, determining ownership becomes significantly more complex. Is the owner the person who wrote the prompt, the organisation deploying the AI, or the developer who built the model?</p>
+
+      <h2>Why Prompts Matter</h2>
+
+      <p>Many organisations underestimate the legal significance of prompts. A carefully engineered prompt may contain valuable business logic, proprietary knowledge, creative direction, or technical insight. In commercial environments, these prompts can become strategic assets in their own right.</p>
+
+      <p>As AI adoption accelerates, businesses are increasingly recognising that competitive advantage may lie not only in outputs, but also in the instructions that generate them.</p>
+
+      <h2>The Risk of Infringement</h2>
+
+      <p>AI systems are trained on vast datasets that may include copyrighted works, patented technologies, trademarks, and proprietary materials. This creates uncertainty around whether generated outputs could unintentionally reproduce protected content.</p>
+
+      <p>For businesses deploying AI at scale, infringement risk is no longer theoretical. It is a governance issue that requires proactive policies, review mechanisms, and legal oversight.</p>
+
+      <h2>The Commercial Stakes</h2>
+
+      <p>AI-generated innovations are already influencing product development, branding, software engineering, and research. The organisations that establish clear ownership frameworks today will be better positioned to capture and defend the value created tomorrow.</p>
+
+      <p>The question is not whether AI will reshape intellectual property. It already has. The question is whether businesses are prepared for the ownership and enforcement challenges that follow.</p>
+    `,
+  },
+  {
+    slug: "patentlab-ai-patent-intelligence",
+    title: "PatentLab: AI-Powered Patent Intelligence for the Modern Innovator",
+    excerpt:
+      "From global patent search to AI-assisted drafting and valuation, PatentLab aims to simplify the entire innovation lifecycle.",
+    image: "/images/image11.png",
+    date: "June 2026",
+    read: "5 min read",
+    category: "LegalTech",
+    external: "https://mypatentlab.com",
+    content: `
+      <p class="lead">Innovation moves quickly, but intellectual property processes often do not. PatentLab seeks to bridge that gap through a unified AI-powered platform for inventors, researchers, startups, and IP professionals.</p>
+
+      <h2>A Unified Patent Ecosystem</h2>
+
+      <p>PatentLab combines patent search, drafting assistance, filing support, analytics, valuation, and commercialization tools into a single platform. Rather than navigating multiple systems, users can manage significant portions of the patent lifecycle in one place.</p>
+
+      <h2>AI-Driven Intelligence</h2>
+
+      <p>The platform provides AI-assisted prior art search, claim drafting support, patent analytics, and jurisdiction-specific guidance. These tools are designed to reduce the time and effort traditionally associated with patent research and preparation.</p>
+
+      <h2>Global Reach</h2>
+
+      <p>PatentLab supports multiple patent jurisdictions, allowing innovators to explore protection strategies beyond a single country. This is particularly valuable for startups and technology companies with international ambitions.</p>
+
+      <h2>Commercialization and Valuation</h2>
+
+      <p>Protecting innovation is only part of the challenge. PatentLab also focuses on helping users understand the commercial value of their intellectual property through valuation tools and licensing-oriented features.</p>
+
+      <h2>The Future of LegalTech</h2>
+
+      <p>As artificial intelligence continues to transform professional services, platforms like PatentLab demonstrate how technology can make intellectual property more accessible, efficient, and scalable for innovators worldwide.</p>
+    `,
+  },
 ];
